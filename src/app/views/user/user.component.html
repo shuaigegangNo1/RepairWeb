@@ -1,0 +1,111 @@
+<div class="row">
+  <div class="col-xl-12 col-lg-12">
+    <div class="card card-block">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h4 class="panel-title">
+            <span><i class="fa fa-users text-primary"></i>&nbsp; 用户管理</span>
+          </h4>
+        </div>
+        <div class="panel-body">
+          <div class="table-responsive">
+            <form class="form-inline" style="margin-bottom: 1rem">
+              <div class="form-group" style="margin-top: 1rem">
+                <!--<label style="margin-left: 1.25rem" class="btn btn-success" for="createUser" title="createUser">-->
+                <button class="btn-small btn-primary"  type="button" (click)="create()">创建新用户</button>
+                <input class="search form-control" placeholder="搜索信息" #term (ngModelChange)="searchUserName()"
+                [(ngModel)]="userCriteria.email" name="userInfo" style="margin-left: 1.25rem;">
+              </div>
+            </form>
+            <table class="table table-hover table-striped">
+              <thead>
+              <tr>
+                <th width="25%">用户ID</th>
+                <th>用户名</th>
+                <th>角色</th>
+                <!--<th>员工代码</th>-->
+                <th>邮箱</th>
+                <th>操作</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr *ngFor="let user of usersList">
+              <td>{{user?.id}}</td>
+              <td>{{user?.name}}</td>
+              <td>{{user?.role|role}}</td>
+              <!--<td>{{employee?.code}}</td>-->
+              <td>{{user?.email}}</td>
+              <td>
+                <div class="btn-group-xs" dropdown container="body">
+                  <button dropdownToggle type="button" class="btn btn-primary dropdown-toggle">
+                    操作<span class="caret"></span>
+                  </button>
+                  <ul *dropdownMenu class="dropdown-menu" role="menu">
+                    <li role="menuitem">
+                      <a class="dropdown-item" href="javascript:void(0);" (click)="update(user)">修改</a>
+                    </li>
+                    <li role="menuitem">
+                      <a class="dropdown-item" href="javascript:void(0);"
+                         (click)="delete(user.id)">删除</a>
+                    </li>
+                  </ul>
+                </div>
+              </td>
+              </tr>
+              </tbody>
+            </table>
+            <div class="col-sm-6 hidden-xs pull-right">
+              <pagination [boundaryLinks]="true" [rotate]="false" class="pagination-sm pull-left"
+              [maxSize]="maxSize" [itemsPerPage]="userCriteria.pagesize" (pageChanged)="pageChanged($event)"
+              [(ngModel)]="currentPage[0]" (numPages)="numPages[0] = $event" [totalItems]="totalItems[0]"
+              [firstText]="firstText" [lastText]="lastText" [previousText]="previousText" [nextText]="nextText">
+              </pagination>
+              <div class="pull-right">
+              <a>页数: {{currentPage[0]}} / {{numPages[0]}}</a>
+              <a style="margin-left: 1.25rem">总数: {{totalItems[0]}}</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div bsModal #updateModal="bs-modal" class="modal fade" tabindex="0" role="dialog"
+aria-labelledby="myLargeModalLabel" aria-hidden="false">
+<div class="modal-dialog">
+<div class="modal-content">
+<div class="modal-header">
+<h4 class="modal-title pull-left">{{isUpdate?'修改用户':'创建用户'}}</h4>
+<button type="button" class="close pull-right" (click)="updateModal.hide()" aria-label="Close">
+<span aria-hidden="true">&times;</span>
+</button>
+</div>
+<div class="modal-body">
+<form class="form-horizontal">
+<div class="form-group">
+<label class="control-label">用户名</label>
+<label style="width: 100%">
+  <input *ngIf="!isUpdate" [(ngModel)]="newUser.name" type="text" class="form-control" id="createUserName" name="createUserName">
+  <input  *ngIf="isUpdate" [(ngModel)]="f_user.name" type="text" class="form-control" id="updateUserName" name="updateUserName">
+</label>
+<label class="control-label">邮箱</label>
+<label style="width: 100%">
+  <input *ngIf="!isUpdate" [(ngModel)]="newUser.email" type="text" class="form-control" id="createUserEmail" name="createUserEmail">
+  <input *ngIf="isUpdate" [(ngModel)]="f_user.email" type="text" class="form-control" id="updateUserEmail" name="updateUserEmail">
+</label>
+<label class="control-label"  *ngIf="!isUpdate" >密码</label>
+<label style="width: 100%"  *ngIf="!isUpdate" >
+  <input [(ngModel)]="newUser.password" type="text" class="form-control" id="createUserPassword" name="createUserPassword">
+</label>
+</div>
+</form>
+</div>
+<div class="modal-footer">
+<button type="button" class="btn btn-primary" (click)="submitUser()">确认</button>
+</div>
+</div>
+</div>
+</div>

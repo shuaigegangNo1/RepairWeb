@@ -1,0 +1,152 @@
+<div class="row">
+  <div class="col-xl-12 col-lg-12">
+    <div class="card card-block">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h4 class="panel-title">
+            <span><i class="fa fa-users text-primary"></i>&nbsp; 设备管理</span>
+          </h4>
+        </div>
+        <div class="panel-body">
+          <div class="table-responsive">
+            <form class="form-inline" style="margin-bottom: 1rem">
+              <div class="form-group" style="margin-top: 1rem">
+                <button class="btn-small btn-link"  type="button" (click)="create()">创建新设备</button>
+                <input class="search form-control" placeholder="搜索信息" #term (ngModelChange)="searchEquipmentName()"
+                       [(ngModel)]="equipmentCriteria.name" name="userInfo" style="margin-left: 1.25rem;">
+              </div>
+            </form>
+            <table class="table table-hover table-striped">
+              <thead>
+              <tr>
+                <th width="25%">ID</th>
+                <th>设备编码</th>
+                <th>设备名称</th>
+                <th>设备批号</th>
+                <th>购买时间</th>
+                <th>操作</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr *ngFor="let equipment of equipmentList">
+              <td>{{equipment?.id}}</td>
+              <td>{{equipment?.code}}</td>
+              <td>{{equipment?.name}}</td>
+              <td>{{equipment?.batch_no}}</td>
+              <td [ngStyle]="{'color':setColor(equipment?.buy_date| date:'yyyy-MM-dd')}">{{equipment?.buy_date| date:'yyyy-MM-dd'}}</td>
+              <td>
+                <div class="btn-group-xs" dropdown container="body">
+                  <button dropdownToggle type="button" class="btn btn-primary dropdown-toggle">
+                    操作<span class="caret"></span>
+                  </button>
+                  <ul *dropdownMenu class="dropdown-menu" role="menu">
+                    <li role="menuitem">
+                      <a class="dropdown-item" href="javascript:void(0);"
+                         (click)="showDetail(equipment)">详情</a>
+                    </li>
+                    <li role="menuitem">
+                      <a class="dropdown-item" href="javascript:void(0);"
+                         (click)="showPics(equipment)">查看附件</a>
+                    </li>
+                    <li role="menuitem">
+                      <a class="dropdown-item" href="javascript:void(0);"
+                         (click)="update(equipment)">修改</a>
+                    </li>
+                    <li role="menuitem">
+                      <a class="dropdown-item" href="javascript:void(0);"
+                         (click)="upload(equipment)">添加附件</a>
+                    </li>
+                  </ul>
+                </div>
+              </td>
+              </tr>
+              </tbody>
+            </table>
+            <div class="col-sm-6 hidden-xs pull-right">
+              <pagination [boundaryLinks]="true" [rotate]="false" class="pagination-sm pull-left"
+              [maxSize]="maxSize" [itemsPerPage]="equipmentCriteria.pagesize" (pageChanged)="pageChanged($event)"
+              [(ngModel)]="currentPage[0]" (numPages)="numPages[0] = $event" [totalItems]="totalItems[0]"
+              [firstText]="firstText" [lastText]="lastText" [previousText]="previousText" [nextText]="nextText">
+              </pagination>
+              <div class="pull-right">
+              <a>页数: {{currentPage[0]}} / {{numPages[0]}}</a>
+              <a style="margin-left: 1.25rem">总数: {{totalItems[0]}}</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div bsModal #updateModal="bs-modal" class="modal fade" tabindex="0" role="dialog"
+     aria-labelledby="myLargeModalLabel" aria-hidden="false">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title pull-left">{{disable?'设备详情':'修改设备'}}</h4>
+        <button type="button" class="close pull-right" (click)="updateModal.hide()" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form class="form-horizontal">
+          <div class="form-group">
+            <label class="control-label">编码</label>
+            <label style="width: 100%">
+              <input *ngIf="!disable" [(ngModel)]="f_equipment.code" type="text" class="form-control" id="updateEquipmentCode" name="updateEquipmentCode">
+              <input *ngIf="disable" value="{{f_equipment.code}}" type="text" class="form-control" id="EquipmentCode" name="EquipmentCode" disabled>
+            </label>
+            <label class="control-label">名称</label>
+            <label style="width: 100%">
+              <input *ngIf="!disable" [(ngModel)]="f_equipment.name" type="text" class="form-control" id="updateEquipmentName" name="updateEquipmentName">
+              <input *ngIf="disable" value="{{f_equipment.name}}" type="text" class="form-control" id="EquipmentName" name="EquipmentName" disabled>
+            </label>
+            <label class="control-label">批号</label>
+            <label style="width: 100%">
+              <input *ngIf="!disable" [(ngModel)]="f_equipment.batch_no" type="text" class="form-control" id="updateEquipmentBatchNo" name="updateEquipmentBatchNo">
+              <input *ngIf="disable" value="{{f_equipment.batch_no}}" type="text" class="form-control" id="EquipmentBatchNo" name="EquipmentBatchNo" disabled>
+            </label>
+            <label class="control-label">购买日期</label>
+            <label style="width: 100%">
+              <input *ngIf="!disable" value="{{f_equipment.buy_date| date:'yyyy-MM-dd'}}" type="text" class="form-control" id="updateEquipmentBuyDate" name="updateEquipmentBuyDate"
+                     #input (keyup)="getValue(input.value)">
+              <input *ngIf="disable" value="{{f_equipment.buy_date| date:'yyyy-MM-dd'}}" type="text" class="form-control" id="EquipmentBuyDate" name="EquipmentBuyDate" disabled>
+            </label>
+            <label class="control-label">备注</label>
+            <label style="width: 100%">
+              <textarea *ngIf="!disable" rows="6" cols="63" [(ngModel)]="f_equipment.commnets" name="updateEquipmentComments"></textarea>
+              <textarea *ngIf="disable" rows="6" cols="63" [(ngModel)]="f_equipment.commnets" name="EquipmentComments" disabled></textarea>
+              <!--<input *ngIf="disable" value="{{f_equipment.commnets}}" type="text" class="form-control" id="EquipmentComments" name="EquipmentComments" disabled>-->
+            </label>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer" *ngIf="!disable">
+        <button type="button" class="btn btn-primary" (click)="submitEquipment()">确认</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div bsModal #showPictureModal="bs-modal" class="modal fade" tabindex="0" role="dialog"
+     aria-labelledby="myLargeModalLabel" aria-hidden="false" >
+  <div class="modal-dialog" >
+    <div class="modal-content" style="width:800px;">
+      <div class="modal-header">
+        <h4 class="modal-title pull-left">附件</h4>
+        <button type="button" class="close pull-right" (click)="showPictureModal.hide()" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <carousel>
+          <slide *ngFor="let image of images">
+            <img src="{{image.filePath}}/{{image.fileName}}.{{image.fileFormat}}" alt="first slide" style="display: block; width: 100%;">
+          </slide>
+        </carousel>
+      </div>
+    </div>
+  </div>
+</div>

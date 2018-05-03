@@ -1,0 +1,67 @@
+<div class="row">
+    <div class="col-xl-12 col-lg-12">
+        <div class="card card-block">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <span><i class="fa fa-users text-primary"></i>&nbsp; {{isExperiment?'机房管理':'机柜管理'}}</span>
+                    </h4>
+                </div>
+                <div class="panel-body">
+                    <div class="table-responsive">
+
+                        <form class="form-horizontal">
+                            <div class="form-group" style="margin-top: 50px;">
+                                <label class="col-sm-2 control-label">编码</label>
+                                <div class="col-sm-8">
+                                    <input type="text" [(ngModel)]="location.code" class="form-control" id="inputLocationCode"
+                                           name="inputLocationCode" placeholder="输入编码">
+                                </div>
+                            </div>
+                            <div class="form-group" style="margin-top: 50px;">
+                                <label class="col-sm-2 control-label">名称</label>
+                                <div class="col-sm-8">
+                                    <input type="text" [(ngModel)]="location.name" class="form-control" id="inputLocationName"
+                                           name="inputLocationName" placeholder="输入名称">
+                                </div>
+                            </div>
+                        </form>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-primary" (click)="createLocation()">保存</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--<div class="container-fluid">-->
+    <!--&lt;!&ndash; Page Heading &ndash;&gt;-->
+    <!--<div class="row">-->
+        <!--<div class="col-xl-12">-->
+            <!--<h2 class="page-header">-->
+                <!--位置创建-->
+            <!--</h2>-->
+        <!--</div>-->
+    <!--</div>-->
+            <!--<form class="form-horizontal">-->
+                <!--<div class="form-group" style="margin-top: 50px;">-->
+                    <!--<label class="col-sm-2 control-label">编码</label>-->
+                    <!--<div class="col-sm-8">-->
+                        <!--<input type="text" [(ngModel)]="location.code" class="form-control" id="inputLocationCode"-->
+                               <!--name="inputLocationCode" placeholder="LocationCode">-->
+                    <!--</div>-->
+                <!--</div>-->
+                <!--<div class="form-group" style="margin-top: 50px;">-->
+                    <!--<label class="col-sm-2 control-label">名称</label>-->
+                    <!--<div class="col-sm-8">-->
+                        <!--<input type="text" [(ngModel)]="location.name" class="form-control" id="inputLocationName"-->
+                               <!--name="inputLocationName" placeholder="LocationName">-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</form>-->
+    <!--<div class="modal-footer">-->
+        <!--<button type="button" class="btn btn-primary" (click)="createLocation()">保存</button>-->
+    <!--</div>-->
+<!--</div>-->

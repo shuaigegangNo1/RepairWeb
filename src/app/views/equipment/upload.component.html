@@ -1,0 +1,20 @@
+<div class="form-group">
+    <label class="col-sm-2 control-label">图片</label>
+    <div class="col-sm-10">
+        <!--<img src="assets/img/1.jpg"  width="64"-->
+             <!--height="64">-->
+        <!--<img src="assets/img/timg666.jpeg"  width="64"-->
+             <!--height="64">-->
+        <div *ngIf="isUploading">
+          <img [src]="imageUrl" width="150" height="150">
+        </div>
+        <!--<label title="Upload image file" for="importImg" class="btn btn-success"-->
+               <!--[class.disabled]="isUploading">-->
+            <input type="file" #whfile name="importImg" id="importImg" class="hide btn btn-success"
+                   (change)="selectImage($event)" accept="image/png, image/jpeg, image/gif">
+        <button type="button" class="btn btn-primary" (click)="uploadImage()">上传</button>
+        <!--</label>-->
+        <!--<p class="help-block" *ngIf="isUploading">上传中...</p>-->
+    </div>
+
+</div>

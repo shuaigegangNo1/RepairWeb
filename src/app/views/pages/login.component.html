@@ -1,0 +1,51 @@
+<div class="app flex-row align-items-center">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card-group mb-0">
+                    <div class="card p-4">
+                        <form [formGroup]="aForm" *ngIf="active" (ngSubmit)="onSubmit()">
+                            <fieldset>
+                                <div class="card-body">
+                                    <h2><font style="color: black">登录</font></h2>
+                                    <p class="text-muted">——————————</p>
+                                    <div class="input-group mb-3">
+                                        <span class="input-group-addon"><i class="icon-user"></i></span>
+                                        <input type="text" class="form-control" placeholder="用户名" formControlName="username" name="username">
+                                    </div>
+                                    <div *ngIf="formErrors.username" class="alert alert-danger warning-message" style="height:auto; margin:0; padding:0">
+                                        {{ formErrors.username }}
+                                    </div>
+                                    <div class="input-group mb-4">
+                                        <span class="input-group-addon"><i class="icon-lock"></i></span>
+                                        <input type="password" class="form-control" placeholder="密码" formControlName="password" name="password">
+                                    </div>
+                                    <div *ngIf="formErrors.password" class="alert alert-danger warning-message" style="height:auto; margin:0; padding:0">
+                                        {{ formErrors.password }}
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <button type="button" class="btn btn-primary px-4" type="submit" [disabled]="!aForm.valid">登录</button>
+                                        </div>
+                                        <div class="col-6 text-right">
+                                            <button type="button" class="btn btn-link px-0">忘记密码?</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </fieldset>
+                        </form>
+                    </div>
+                    <div class="card text-white bg-primary py-5 d-md-down-none" style="width:44%">
+                        <div class="card-body text-center">
+                            <div>
+                                <br><h2>XXXXXX</h2><br>
+                                <h5>XXXXXXXXXXXXXXXX</h5><br><br>
+                                <button type="button" class="btn btn-primary active mt-3">注册账户</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

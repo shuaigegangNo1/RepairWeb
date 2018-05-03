@@ -1,0 +1,134 @@
+<div class="row">
+    <div class="col-xl-12 col-lg-12">
+        <div class="card card-block">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <span><i class="fa fa-users text-primary"></i>&nbsp; 机柜管理</span>
+                    </h4>
+                </div>
+                <div class="panel-body">
+                    <div class="table-responsive">
+
+                        <!--<form class="form-inline" style="margin-bottom: 1rem">-->
+                            <!--<div class="form-group" style="margin-top: 1rem">-->
+                                <!--<label style="margin-left: 1.25rem" class="btn btn-success" for="createUser" title="createUser">-->
+                                    <!--<input class="hide" id="createUser" name="createUser" type="button" (click)="create()">创建机柜-->
+                                <!--</label>-->
+                                <!--&lt;!&ndash;<input class="search form-control" placeholder="搜索信息" #term (ngModelChange)="searchUserName()"&ndash;&gt;-->
+                                <!--&lt;!&ndash;[(ngModel)]="userCriteria.info" name="userInfo" style="margin-left: 1.25rem;">&ndash;&gt;-->
+                                <!--&lt;!&ndash;<label style="margin-left: 1.25rem; margin-right: 0.5rem" for="roleSelect">用户类型</label>&ndash;&gt;-->
+                                <!--&lt;!&ndash;<select [(ngModel)]="selectedValue" (ngModelChange)="select()" class="form-control"&ndash;&gt;-->
+                                <!--&lt;!&ndash;id="roleSelect" name="userType">&ndash;&gt;-->
+                                <!--&lt;!&ndash;<option value="0">全部</option>&ndash;&gt;-->
+                                <!--&lt;!&ndash;<option value="1">管理员</option>&ndash;&gt;-->
+                                <!--&lt;!&ndash;<option value="2">辖区负责人</option>&ndash;&gt;-->
+                                <!--&lt;!&ndash;<option value="3">监管员</option>&ndash;&gt;-->
+                                <!--&lt;!&ndash;</select>&ndash;&gt;-->
+                            <!--</div>-->
+                            <!--<div class="form-group" style="margin-top: 1rem">-->
+                                <!--<label style="margin-left: 1.25rem;margin-right: 0.5rem" for="districtSelect">所属辖区</label>-->
+                                <!--&lt;!&ndash;<select [(ngModel)]="districtCriteria" class="form-control" id="districtSelect" name="district">&ndash;&gt;-->
+                                <!--&lt;!&ndash;<option value="" selected>全部</option>&ndash;&gt;-->
+                                <!--&lt;!&ndash;<option *ngFor="let district of districtList;" [value]="district.name">{{district.name}}</option>&ndash;&gt;-->
+                                <!--&lt;!&ndash;</select>&ndash;&gt;-->
+                                <!--<div class="input-group" style="margin-left: 1.25rem">-->
+                                    <!--&lt;!&ndash;<div class="input-group-btn">&ndash;&gt;-->
+                                    <!--&lt;!&ndash;<button class="btn btn-primary" (click)="searchUser()"><i class="fa fa-search"></i> 搜索 </button>&ndash;&gt;-->
+                                    <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                                <!--</div>-->
+                            <!--</div>-->
+                        <!--</form>-->
+                        <form class="form-inline" style="margin-bottom: 1rem">
+                            <div class="form-group" style="margin-top: 1rem">
+                                <!--<label style="margin-left: 1.25rem" class="btn btn-success" for="createUser" title="createUser">-->
+                                <button class="btn-small btn-primary"  type="button" (click)="create()">创建新机柜</button>
+                                <input class="search form-control" placeholder="搜索信息" #term (ngModelChange)="searchCabinetName()"
+                                       [(ngModel)]="locationCriteria.name" name="userInfo" style="margin-left: 1.25rem;">
+                            </div>
+                        </form>
+                        <table class="table table-hover table-striped">
+                            <thead>
+                            <tr>
+                                <th width="25%">ID</th>
+                                <th>机柜编码</th>
+                                <!--<th>员工代码</th>-->
+                                <th>机柜名称</th>
+                                <th>操作</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr *ngFor="let cabinet of cabinetList">
+                                <td>{{cabinet?.id}}</td>
+                                <td>{{cabinet?.code}}</td>
+                                <td>{{cabinet?.name}}</td>
+                                <td>
+                                    <div class="btn-group-xs" dropdown container="body">
+                                        <button dropdownToggle type="button" class="btn btn-primary dropdown-toggle">
+                                            操作<span class="caret"></span>
+                                        </button>
+                                        <ul *dropdownMenu class="dropdown-menu" role="menu">
+                                            <li role="menuitem">
+                                                <a class="dropdown-item" href="javascript:void(0);"
+                                                   (click)="update(cabinet)">修改</a>
+                                            </li>
+                                            <li role="menuitem">
+                                                <a class="dropdown-item" href="javascript:void(0);"
+                                                   (click)="showEquipmentListByLocationId(cabinet.id)">查看设备</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <!--<button type="button" class="btn-small btn-primary" (click)="update(cabinet)">修改</button>-->
+                                    <!--<button type="button" class="btn-small btn-primary" (click)="showEquipmentListByLocationId(cabinet.id)">查看设备</button>-->
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <div class="col-sm-6 hidden-xs pull-right">
+                            <pagination [boundaryLinks]="true" [rotate]="false" class="pagination-sm pull-left"
+                            [maxSize]="maxSize" [itemsPerPage]="locationCriteria.pagesize" (pageChanged)="pageChanged($event)"
+                            [(ngModel)]="currentPage[0]" (numPages)="numPages[0] = $event" [totalItems]="totalItems[0]"
+                            [firstText]="firstText" [lastText]="lastText" [previousText]="previousText" [nextText]="nextText">
+                            </pagination>
+                            <div class="pull-right">
+                            <a>页数: {{currentPage[0]}} / {{numPages[0]}}</a>
+                            <a style="margin-left: 1.25rem">总数: {{totalItems[0]}}</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div bsModal #updateLocationModal="bs-modal" class="modal fade" tabindex="0" role="dialog"
+     aria-labelledby="myLargeModalLabel" aria-hidden="false">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title pull-left">修改位置</h4>
+                <button type="button" class="close pull-right" (click)="updateLocationModal.hide()" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal">
+                    <div class="form-group">
+                        <label class="control-label">编码</label>
+                        <label style="width: 100%">
+                            <input [(ngModel)]="f_location.code" type="text" class="form-control" id="updateLocationCode" name="updateLocationCode">
+                        </label>
+                        <label class="control-label">名称</label>
+                        <label style="width: 100%">
+                            <input [(ngModel)]="f_location.name" type="text" class="form-control" id="updateLocationName" name="updateLocationName">
+                        </label>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" (click)="submitLocation()">确认</button>
+            </div>
+        </div>
+    </div>
+</div>

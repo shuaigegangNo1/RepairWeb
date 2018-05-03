@@ -1,0 +1,17 @@
+<div style="width:85%; height:400px; margin-top:50px;">
+    <ngx-charts-bar-vertical *ngIf="showBar"
+            [view]="view"
+            [scheme]="colorScheme"
+            [results]="single"
+            [gradient]="gradient"
+            legendTitle="图例"
+            [xAxis]="showXAxis"
+            [yAxis]="showYAxis"
+            [legend]="showLegend"
+            [showXAxisLabel]="showXAxisLabel"
+            [showYAxisLabel]="showYAxisLabel"
+            [xAxisLabel]="xAxisLabel"
+            [yAxisLabel]="yAxisLabel"
+            (select)="onSelect($event)">
+    </ngx-charts-bar-vertical>
+</div>

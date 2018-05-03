@@ -1,0 +1,95 @@
+<div class="row">
+    <div class="col-xl-12 col-lg-12">
+        <div class="card card-block">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <span><i class="fa fa-users text-primary"></i>&nbsp; 设备管理</span>
+                    </h4>
+                </div>
+                <div class="panel-body">
+                    <div class="table-responsive">
+
+                        <form class="form-horizontal">
+                            <div class="form-group" *ngIf ="showSelect">
+                                <label class="col-sm-2 control-label">机房</label>
+                                <div class="col-sm-8">
+                                    <select [(ngModel)]="parent_id" name="locationId" class="form-control" (change)="change()">
+                                        <option *ngFor="let location of locations" value="{{location.id}}">{{location.name}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group" *ngIf ="showSelect">
+                                <label class="col-sm-2 control-label">机柜</label>
+                                <div class="col-sm-8">
+                                    <select [(ngModel)]="equipment.location_id" name="cabinetId" class="form-control">
+                                        <option *ngFor="let cabinet of cabinets" value="{{cabinet.id}}">{{cabinet.name}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group" style="margin-top: 50px;">
+                                <label class="col-sm-2 control-label">编码</label>
+                                <div class="col-sm-8">
+                                    <input type="text" [(ngModel)]="equipment.code" class="form-control" id="inputEquipmentCode"
+                                           name="inputEquipmentCode" placeholder="请输入编码">
+                                </div>
+                            </div>
+                            <div class="form-group" style="margin-top: 50px;">
+                                <label class="col-sm-2 control-label">类型</label>
+                                <div class="col-sm-8">
+                                    <input type="text" [(ngModel)]="equipment.type" class="form-control" id="inputEquipmentType"
+                                           name="inputEquipmentType" placeholder="请输入类型">
+                                </div>
+                            </div>
+                            <div class="form-group" style="margin-top: 50px;">
+                                <label class="col-sm-2 control-label">名称</label>
+                                <div class="col-sm-8">
+                                    <input type="text" [(ngModel)]="equipment.name" class="form-control" id="inputEquipmentName"
+                                           name="inputEquipmentName" placeholder="请输入名称">
+                                </div>
+                            </div>
+                            <div class="form-group" style="margin-top: 50px;">
+                                <label class="col-sm-2 control-label">批号</label>
+                                <div class="col-sm-8">
+                                    <input type="text" [(ngModel)]="equipment.batch_no" class="form-control" id="inputEquipmentBatchNo"
+                                           name="inputEquipmentBatchNo" placeholder="请输入批号">
+                                </div>
+                            </div>
+                            <div class="form-group" style="margin-top: 50px;">
+                                <label class="col-sm-2 control-label">购买日期</label>
+                                <div class="col-sm-8">
+                                    <input type="text"
+                                           class="form-control"
+                                           #dp="bsDatepicker"
+                                           bsDatepicker
+                                           value ="{{equipment.buy_date|date:'yyyy-MM-dd'}}"
+                                           name="inputBuyDate"
+                                           id="inputBuyDate"
+                                           placeholder="请选择购买日期"
+                                           [bsConfig]="{ dateInputFormat: 'YYYY-MM-DD' }"
+                                            (bsValueChange)="getValue(dp)">
+                                </div>
+                            </div>
+                            <!--<div class="form-group" style="margin-top: 50px;">-->
+                                <!--<label class="col-sm-2 control-label">备注</label>-->
+                                <!--<div class="col-sm-10">-->
+                                    <!--<textarea rows="6" cols="145" [(ngModel)]="equipment.commnets" name="inputEquipmentComments"></textarea>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">备注</label>
+                                <div class="col-sm-10">
+                                    <app-tinymce [initialContent]="equipment.comments" [elementId]="'textareaContent'"
+                                                 (onEditorKeyup)="setContent($event)"></app-tinymce>
+                                </div>
+                            </div>
+                        </form>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-primary" (click)="createEquipment()">保存</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
