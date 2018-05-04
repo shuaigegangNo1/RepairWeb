@@ -1,9 +1,17 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import {RepairDetailComponent} from "./repair.detail.component";
+import {RepairListComponent} from "./repair.list.component";
 
 
 const routes: Routes = [
+  {
+    path: '',
+    component: RepairListComponent,
+    data: {
+      title: 'RepairList'
+    }
+  },
   {
     path: 'create',
     component: RepairDetailComponent,

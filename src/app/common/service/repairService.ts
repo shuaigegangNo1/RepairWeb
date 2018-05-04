@@ -6,7 +6,7 @@ import {Http} from '@angular/http';
 import {BaseService} from './baseService';
 import {DOMAIN_SERVER_URL} from '../constants';
 import {Observable} from 'rxjs/Observable';
-import {Repair} from "../entity/Repair";
+import {Repair, RepairCriteria} from "../entity/Repair";
 @Injectable()
 export class RepairService extends BaseService {
 
@@ -17,10 +17,10 @@ export class RepairService extends BaseService {
         return DOMAIN_SERVER_URL;
     }
 
-    // getEquipmentList(equipmentCriteria: EquipmentCriteria) {
-    //     return this.http.post(this.getServiceUrl() + '/equipment/queryList?page=' + equipmentCriteria.skip, JSON.stringify
-    //         (equipmentCriteria), this.getJsonHeaderWithJWT()).map(res => res.json()).catch(this.handleError);
-    // }
+    getRepairList(repairCriteria: RepairCriteria) {
+        return this.http.post(this.getServiceUrl() + '/repair/querylist?page=' + repairCriteria.skip, JSON.stringify
+            (repairCriteria), this.getJsonHeaderWithJWT()).map(res => res.json()).catch(this.handleError);
+    }
     create(userId: number, repair: Repair) {
         return this.http.post(this.getServiceUrl() + '/repair/create?userId=' + userId , JSON.stringify(repair),
             this.getJsonHeaderWithJWT()).map(res => res.json()).catch(this.handleError)

@@ -12,6 +12,7 @@ export class Repair extends BaseModule {
 }
 
 export class RepairCriteria extends BaseCriteria {
-    repair_status: number;
-    user_id = '';
+    content = '';
+    userName?: string;
+    repair_status?: number;
 }

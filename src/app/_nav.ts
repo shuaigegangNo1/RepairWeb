@@ -10,16 +10,16 @@ export const navigation = [
   },
   {
     title: true,
-    name: '机房 设备管控'
+    name: '报修管控'
   },
   {
-    name: '机房管理',
+    name: '报修管理',
     url: '/#',
     icon: 'icon-puzzle',
     children: [
       {
-        name: '机柜管理',
-        url: '/location',
+        name: '我的报修',
+        url: '/repair',
         icon: 'icon-puzzle'
       },
       {
