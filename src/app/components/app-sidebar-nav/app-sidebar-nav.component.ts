@@ -1,14 +1,14 @@
 import { Component, ElementRef, Input, OnInit, Renderer2 } from '@angular/core';
 
 // Import navigation elements
-import { navigation } from './../../_nav';
+import { navigation, navigation4Admin } from './../../_nav';
 
 @Component({
   selector: 'app-sidebar-nav',
   template: `
     <nav class="sidebar-nav">
       <ul class="nav">
-        <ng-template ngFor let-navitem [ngForOf]="navigation">
+        <ng-template ngFor let-navitem [ngForOf]="navigations">
           <li *ngIf="isDivider(navitem)" class="nav-divider"></li>
           <ng-template [ngIf]="isTitle(navitem)">
             <app-sidebar-nav-title [title]='navitem'></app-sidebar-nav-title>
@@ -22,8 +22,8 @@ import { navigation } from './../../_nav';
 })
 export class AppSidebarNavComponent {
 
-  public navigation = navigation;
-
+  navigations: any[];
+  role: any;
   public isDivider(item) {
     return item.divider ? true : false
   }
@@ -32,7 +32,14 @@ export class AppSidebarNavComponent {
     return item.title ? true : false
   }
 
-  constructor() { }
+  constructor() {
+    this.role = JSON.parse(localStorage.getItem('role'));
+    if (this.role === 3) {
+      this.navigations = navigation4Admin;
+    }else {
+      this.navigations = navigation;
+    }
+  }
 }
 
 import { Router } from '@angular/router';

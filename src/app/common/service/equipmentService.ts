@@ -50,7 +50,7 @@ export class EquipmentService extends BaseService {
         return this.http.get(this.getServiceUrl() + '/equipment/chartJson',
             this.getJsonHeaderWithJWT()).map(res => res.json()).catch(this.handleError)
     }
-    showDetail(equipmentId:number) {
+    showDetail(equipmentId: number) {
         return this.http.get(this.getServiceUrl() + '/equipment/detail?equipmentId=' + equipmentId ,
             this.getJsonHeaderWithJWT()).map(res => res.json()).catch(this.handleError)
     }

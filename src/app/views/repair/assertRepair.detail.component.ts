@@ -7,18 +7,29 @@ import {MessageService} from '../../common/service/messageService';
 import {Repair} from '../../common/entity/Repair';
 import {RepairService} from '../../common/service/repairService';
 @Component({
-    selector: 'app-repair-detail',
-    templateUrl: 'repair.detail.component.html'
+    selector: 'app-assert-repair-detail',
+    templateUrl: 'assertRepair.detail.component.html'
 })
-export class RepairDetailComponent {
+export class AssertRepairDetailComponent {
     repair: Repair = new Repair();
     loginUser: any;
+    // x: number = 5;
+    // y: number = 2;
+    max = 10;
+    rate = 7;
+    isReadonly = false;
+
+    overStar: number;
+    percent: number;
     constructor(protected router: Router, private messageService: MessageService,
                 private repairService: RepairService, private route: ActivatedRoute) {
+        if (this.route.snapshot.params['id']) {
+            this.repair.id = this.route.snapshot.params['id'];
+        }
         this.loginUser = JSON.parse(localStorage.getItem('loginUser'));
+        this.showRepairDetail();
     }
     createRepair() {
-        this.repair.repair_status = 0;
         this.repairService.create(this.loginUser.name, this.repair).subscribe(
             res => {
                 this.router.navigate(['/message'], {queryParams: {'message': '报修成功!', 'url': '/user'}});
@@ -48,10 +59,28 @@ export class RepairDetailComponent {
     //     this.equipmentService.update(this.equipment.id, this.equipment).subscribe(res => console.log('>>>>res>>>>' + JSON.stringify(res)))
     //     this.router.navigate(['/message'],{queryParams:{'message':'设备修改成功!','url':'/equipment'}});
     // }
-    // showDetail() {
-    //     this.equipmentService.showDetail(this.equipment.id).subscribe(res=> {this.equipment = res.result})
-    // }
+    showRepairDetail() {
+        this.repairService.getRepairDetail(this.repair.id).subscribe(res => {this.repair = res.result})
+    }
     // getValue(value:any) {
     //     this.equipment.buy_date = new Date(value._bsValue);
     // }
+    hoveringOver(value: number): void {
+        this.overStar = value;
+        this.percent = (value / this.max) * 100;
+    }
+
+    resetStar(): void {
+        this.overStar = void 0;
+    }
+    reject() {
+        this.repair.repair_status = 1;
+        this.repairService.update(this.repair).subscribe(res => console.log('>>>>res>>>>' + JSON.stringify(res)));
+        this.router.navigate(['/message'], {queryParams: {'message': '审批完成!', 'url': '/repair/assertRepairList'}});
+    }
+    accept() {
+        this.repair.repair_status = 2;
+        this.repairService.update(this.repair).subscribe(res => console.log('>>>>res>>>>' + JSON.stringify(res)));
+        this.router.navigate(['/message'], {queryParams: {'message': '审批完成!', 'url': '/repair/assertRepairList'}});
+    }
 }

@@ -4,14 +4,13 @@ import {MessageService} from '../../common/service/messageService';
 import {ModalDirective} from 'ngx-bootstrap';
 import {CustomPaginationComponent} from '../pagination/pagination.component';
 import {Subject} from 'rxjs/Subject';
-import {FileService} from '../../common/service/fileService';
 import {Repair, RepairCriteria} from "../../common/entity/Repair";
 import {RepairService} from "../../common/service/repairService";
 
 @Component({
-  templateUrl: 'repair.list.component.html'
+  templateUrl: 'assertRepair.list.component.html'
 })
-export class RepairListComponent extends CustomPaginationComponent implements OnInit, OnChanges {
+export class AssertRepairListComponent extends CustomPaginationComponent implements OnInit, OnChanges {
   repairList: Array<Repair>;
   page  = 0;
   repairCriteria: RepairCriteria = new RepairCriteria();
@@ -28,7 +27,7 @@ export class RepairListComponent extends CustomPaginationComponent implements On
       this.repairCriteria.repair_status = this.route.snapshot.params['id'];
     }
     this.loginUser = JSON.parse(localStorage.getItem('loginUser'));
-    this.repairCriteria.userName = this.loginUser.name;
+    // this.repairCriteria.userName = this.loginUser.name;
     this.getRepairList()
   }
 
@@ -51,16 +50,18 @@ export class RepairListComponent extends CustomPaginationComponent implements On
 
   }
   getRepairList() {
+    // this.repairCriteria.repair_status = 0;
     this.repairService.getRepairList(this.repairCriteria).subscribe(res => {
       this.repairList = res.result.content;
       this.totalItems[0] = res.result.totalElements;
       this.resetMaxSize(this.currentTab, this.repairCriteria);
     })
   }
-  update(repair: Repair) {
-    this.disable = false;
-    this.f_Repair = repair;
-    this.updateModal.show();
+  approve(repair: Repair) {
+    // this.disable = false;
+    // this.f_Repair = repair;
+    // this.updateModal.show();
+    this.router.navigate(['/repair/approve', repair.id]);
   }
 
   pageChanged(event: any) {
@@ -72,11 +73,9 @@ export class RepairListComponent extends CustomPaginationComponent implements On
     this.router.navigate(['/repair/create']);
   }
   submitRepair() {
-    this.repairService.update(this.f_Repair).subscribe(res => {
-      this.messageService.pushMessage({title: 'Success', content: '报修修改成功', type: 'success'});
-      this.searchStream.next(this.repairCriteria);
-      this.updateModal.hide();
-    })
+    this.repairService.update(this.f_Repair).subscribe(res => console.log('>>>>res>>>>' + JSON.stringify(res)))
+    this.updateModal.hide();
+    this.messageService.pushMessage({title: 'Success', content: '报修修改成功', type: 'success'});
   }
   searchEquipmentName() {
     this.searchStream.next(this.repairCriteria);

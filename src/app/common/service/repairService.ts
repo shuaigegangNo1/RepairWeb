@@ -25,10 +25,10 @@ export class RepairService extends BaseService {
         return this.http.post(this.getServiceUrl() + '/repair/create?userId=' + userId , JSON.stringify(repair),
             this.getJsonHeaderWithJWT()).map(res => res.json()).catch(this.handleError)
     }
-    // update(equipmentId: number , equipment: Equipment) {
-    //     return this.http.post(this.getServiceUrl() + '/equipment/update?equipmentId=' + equipmentId , JSON.stringify(equipment),
-    //         this.getJsonHeaderWithJWT()).map(res => res.json()).catch(this.handleError)
-    // }
+    update(repair: Repair) {
+        return this.http.post(this.getServiceUrl() + '/repair/update' , JSON.stringify(repair),
+            this.getJsonHeaderWithJWT()).map(res => res.json()).catch(this.handleError)
+    }
 
     // getChartData(){
     //     return Observable.of([
@@ -50,8 +50,8 @@ export class RepairService extends BaseService {
     //     return this.http.get(this.getServiceUrl() + '/equipment/chartJson',
     //         this.getJsonHeaderWithJWT()).map(res => res.json()).catch(this.handleError)
     // }
-    // showDetail(equipmentId:number) {
-    //     return this.http.get(this.getServiceUrl() + '/equipment/detail?equipmentId=' + equipmentId ,
-    //         this.getJsonHeaderWithJWT()).map(res => res.json()).catch(this.handleError)
-    // }
+    getRepairDetail(repairId: number) {
+        return this.http.get(this.getServiceUrl() + '/repair/detail?repairId=' + repairId ,
+            this.getJsonHeaderWithJWT()).map(res => res.json()).catch(this.handleError)
+    }
 }

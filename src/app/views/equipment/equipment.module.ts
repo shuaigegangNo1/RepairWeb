@@ -30,6 +30,6 @@ import {TinymceComponent} from '../../common/component/tinymce/tinymce.component
     // BrowserAnimationsModule
   ],
   declarations: [ EquipmentComponent, EquipmentDetailComponent, UploadComponent,
-    BarChartComponent, TinymceComponent ]
+    BarChartComponent ]
 })
 export class EquipmentModule { }

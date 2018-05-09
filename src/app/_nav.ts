@@ -1,14 +1,5 @@
 export const navigation = [
   {
-    name: '用户管理',
-    url: '/user',
-    icon: 'icon-speedometer',
-    badge: {
-      variant: 'info',
-      // text: 'NEW'
-    }
-  },
-  {
     title: true,
     name: '报修管控'
   },
@@ -23,92 +14,52 @@ export const navigation = [
         icon: 'icon-puzzle'
       },
       {
-        name: '设备管理',
-        url: '/equipment',
+        name: '报修',
+        url: '/repair',
+        icon: 'icon-puzzle'
+      },
+      {
+        name: '历史报修',
+        url: '/repair/history/3',
+        icon: 'icon-puzzle'
+      }
+    ]
+  }
+];
+
+export const navigation4Admin = [
+  {
+    name: '用户管理',
+    url: '/user',
+    icon: 'icon-speedometer',
+    badge: {
+      variant: 'info',
+    }
+  },
+  {
+    title: true,
+    name: '报修管控'
+  },
+  {
+    name: '维修管理',
+    url: '/#',
+    icon: 'icon-puzzle',
+    children: [
+      {
+        name: '维修审批',
+        url: '/repair/assertRepairList/0',
+        icon: 'icon-puzzle'
+      },
+      {
+        name: '待维修',
+        url: '/repair/unHandledRepairList/2',
+        icon: 'icon-puzzle'
+      },
+      {
+        name: '历史维修',
+        url: '/repair/historyRepairList/3',
         icon: 'icon-puzzle'
       }
     ]
   },
-  // {
-  //   name: 'Icons',
-  //   url: '/icons',
-  //   icon: 'icon-star',
-  //   children: [
-  //     {
-  //       name: 'Font Awesome',
-  //       url: '/icons/font-awesome',
-  //       icon: 'icon-star',
-  //       badge: {
-  //         variant: 'secondary',
-  //         text: '4.7'
-  //       }
-  //     },
-  //     {
-  //       name: 'Simple Line Icons',
-  //       url: '/icons/simple-line-icons',
-  //       icon: 'icon-star'
-  //     }
-  //   ]
-  // },
-  // {
-  //   name: 'Widgets',
-  //   url: '/widgets',
-  //   icon: 'icon-calculator',
-  //   badge: {
-  //     variant: 'info',
-  //     text: 'NEW'
-  //   }
-  // },
-  // {
-  //   name: 'Charts',
-  //   url: '/charts',
-  //   icon: 'icon-pie-chart'
-  // },
-  // {
-  //   divider: true
-  // },
-  // {
-  //   title: true,
-  //   name: 'Extras',
-  // },
-  // {
-  //   name: 'Pages',
-  //   url: '/pages',
-  //   icon: 'icon-star',
-  //   children: [
-  //     {
-  //       name: 'Login',
-  //       url: '/pages/login',
-  //       icon: 'icon-star'
-  //     },
-  //     {
-  //       name: 'Register',
-  //       url: '/pages/register',
-  //       icon: 'icon-star'
-  //     },
-  //     {
-  //       name: 'Error 404',
-  //       url: '/pages/404',
-  //       icon: 'icon-star'
-  //     },
-  //     {
-  //       name: 'Error 500',
-  //       url: '/pages/500',
-  //       icon: 'icon-star'
-  //     }
-  //   ]
-  // },
-  // {
-  //   name: 'Download CoreUI',
-  //   url: 'http://coreui.io/angular/',
-  //   icon: 'icon-cloud-download',
-  //   class: 'mt-auto',
-  //   variant: 'success'
-  // },
-  // {
-  //   name: 'Try CoreUI PRO',
-  //   url: 'http://coreui.io/pro/angular/',
-  //   icon: 'icon-layers',
-  //   variant: 'danger'
-  // }
 ];

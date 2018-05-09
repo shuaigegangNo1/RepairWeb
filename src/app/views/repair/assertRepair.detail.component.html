@@ -1,0 +1,112 @@
+<div class="row">
+    <div class="col-xl-12 col-lg-12">
+        <div class="card card-block">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <span><i class="fa fa-users text-primary"></i>&nbsp; 报修审批</span>
+                    </h4>
+                </div>
+                <div class="panel-body">
+                    <div class="table-responsive">
+                        <form class="form-horizontal">
+                            <div class="form-group" style="margin-top: 50px;">
+                                <label class="col-sm-2 control-label">报修内容</label>
+                                <div class="col-sm-8">
+                                    <!--<input type="text" [(ngModel)]="repair.content" class="form-control" id="inputContent"-->
+                                           <!--name="inputContent" placeholder="请输入报修内容">-->
+                                    <textarea rows="6" cols="90" [(ngModel)]="repair.content" name="content" disabled></textarea>
+                                </div>
+                            </div>
+                            <div class="form-group" style="margin-top: 50px;">
+                                <label class="col-sm-2 control-label">区域</label>
+                                <div class="col-sm-8">
+                                    <select [(ngModel)]="repair.area" name="area" class="form-control" disabled>
+                                        <option value="0">宿舍区</option>
+                                        <option value="1">教学区</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group" style="margin-top: 50px;">
+                                <label class="col-sm-2 control-label">详细地址</label>
+                                <div class="col-sm-8">
+                                    <input type="text" [(ngModel)]="repair.address" class="form-control" id="inputAddress"
+                                           name="inputAddress" placeholder="请输入地址" disabled>
+                                </div>
+                            </div>
+                            <div class="form-group" style="margin-top: 50px;">
+                                <label class="col-sm-2 control-label">状态</label>
+                                <div class="col-sm-8">
+                                    <select [(ngModel)]="repair.repair_status" name="status" class="form-control">
+                                        <option value="0">未受理</option>
+                                        <option value="1">不予受理</option>
+                                        <option value="2">处理中</option>
+                                        <option value="3">已完成</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group" style="margin-top: 50px;" *ngIf="repair.repair_status ==3">
+                                <label class="col-sm-2 control-label">使用材料</label>
+                                <div class="col-sm-8">
+                                    <input type="text" [(ngModel)]="repair.material" class="form-control" id="inputMaterial"
+                                           name="inputMaterial" placeholder="请输入材料">
+                                </div>
+                            </div>
+                            <div class="form-group" style="margin-top: 50px;" *ngIf="repair.repair_status ==3">
+                                <label class="col-sm-2 control-label">维修结果</label>
+                                <div class="col-sm-8">
+                                    <input type="text" [(ngModel)]="repair.result" class="form-control" id="inputResult"
+                                           name="inputResult" placeholder="请输入维修结果">
+                                </div>
+                            </div>
+                            <!--<div class="form-group" style="margin-top: 50px;">-->
+                                <!--<rating [(ngModel)]="rate" [max]="max" [readonly]="isReadonly"-->
+                                        <!--(onHover)="hoveringOver($event)" (onLeave)="resetStar()"-->
+                                        <!--[titles]="['one','two','three']" [ngModelOptions]="{standalone: true}"></rating>-->
+                                <!--<span class="label"-->
+                                      <!--[ngClass]="{'label-warning': percent<30, 'label-info': percent>=30 && percent<70, 'label-success': percent>=70}"-->
+                                      <!--[ngStyle]="{display: (overStar && !isReadonly) ? 'inline' : 'none'}">{{percent}}%</span>-->
+                                <!--<div class="card">-->
+                                    <!--<pre class="card-block card-header" style="margin:15px 0;">Rate: <b>{{rate}}</b>;  Readonly is: <i>{{isReadonly}}</i>;  Hovering over: <b>{{overStar || "none"}}</b></pre>-->
+                                <!--</div>-->
+
+                                <!--<button type="button" class="btn btn-sm btn-danger" (click)="rate = 0"-->
+                                        <!--[disabled]="isReadonly">Clear-->
+                                <!--</button>-->
+                                <!--<button type="button" class="btn btn-sm btn-primary"-->
+                                        <!--(click)="isReadonly = ! isReadonly">Toggle Readonly-->
+                                <!--</button>-->
+                            <!--</div>-->
+                            <!--<div class="form-group" style="margin-top: 50px;">-->
+                                <!--<label class="col-sm-2 control-label">购买日期</label>-->
+                                <!--<div class="col-sm-8">-->
+                                    <!--<input type="text"-->
+                                           <!--class="form-control"-->
+                                           <!--#dp="bsDatepicker"-->
+                                           <!--bsDatepicker-->
+                                           <!--value ="{{equipment.buy_date|date:'yyyy-MM-dd'}}"-->
+                                           <!--name="inputBuyDate"-->
+                                           <!--id="inputBuyDate"-->
+                                           <!--placeholder="请选择购买日期"-->
+                                           <!--[bsConfig]="{ dateInputFormat: 'YYYY-MM-DD' }"-->
+                                            <!--(bsValueChange)="getValue(dp)">-->
+                                <!--</div>-->
+                            <!--</div>-->
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">备注</label>
+                                <div class="col-sm-10">
+                                    <app-tinymce [initialContent]="repair.comments" [elementId]="'textareaContent'"
+                                                 (onEditorKeyup)="setContent($event)"></app-tinymce>
+                                </div>
+                            </div>
+                        </form>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-primary" (click)="reject()">拒绝</button>
+                            <button type="button" class="btn btn-primary" (click)="accept()">同意</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

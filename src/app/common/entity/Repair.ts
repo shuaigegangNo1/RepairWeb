@@ -8,6 +8,9 @@ export class Repair extends BaseModule {
     area?: number;
     address?: string;
     repair_status?: number;
+    material?: string;
+    result?: string;
+    rate?: string;
     comments?: string;
 }
 

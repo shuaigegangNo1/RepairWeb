@@ -9,6 +9,9 @@ import {RouterModule} from "@angular/router";
 import {SimpleNotificationsModule} from "angular2-notifications";
 import {BsDropdownModule, ModalModule, TabsModule, SortableModule, PaginationModule} from 'ngx-bootstrap';
 import {RolePipe} from "./pipe/role.pipe";
+import {RepairStatusPipe} from "./pipe/repairStatus.pipe";
+import {AreaPipe} from "./pipe/area.pipe";
+import {TinymceComponent} from "./component/tinymce/tinymce.component";
 
 
 @NgModule({
@@ -25,7 +28,7 @@ import {RolePipe} from "./pipe/role.pipe";
         SortableModule.forRoot(),
         PaginationModule.forRoot(),
     ],
-    declarations: [RolePipe],
+    declarations: [RolePipe, AreaPipe, RepairStatusPipe, TinymceComponent],
     exports: [CommonModule,
         FormsModule,
         RouterModule,
@@ -37,7 +40,10 @@ import {RolePipe} from "./pipe/role.pipe";
         TabsModule,
         SortableModule,
         PaginationModule,
-        RolePipe
+        RolePipe,
+        AreaPipe,
+        RepairStatusPipe,
+        TinymceComponent
         ]
 })
 export class SharedModules {

@@ -22,8 +22,8 @@
                 <th width="25%">ID</th>
                 <th>报修内容</th>
                 <th>报修区域</th>
+                <th>报修地址</th>
                 <th>报修状态</th>
-                <th>报修时间</th>
                 <th>操作</th>
               </tr>
               </thead>
@@ -31,9 +31,9 @@
               <tr *ngFor="let repair of repairList">
               <td>{{repair?.id}}</td>
               <td>{{repair?.content}}</td>
-              <td>{{repair?.area}}</td>
-              <td>{{repair?.repair_status}}</td>
-              <td>{{repair?.create_time| date:'yyyy/MM/dd HH:mm'}}</td>
+                <td>{{repair?.area | area}}</td>
+                <td>{{repair?.address}}</td>
+                <td>{{repair?.repair_status | repairStatus}}</td>
               <td>
                 <div class="btn-group-xs" dropdown container="body">
                   <button dropdownToggle type="button" class="btn btn-primary dropdown-toggle">
@@ -44,18 +44,10 @@
                       <a class="dropdown-item" href="javascript:void(0);"
                          (click)="showDetail(repair)">详情</a>
                     </li>
-                    <!--<li role="menuitem">-->
-                      <!--<a class="dropdown-item" href="javascript:void(0);"-->
-                         <!--(click)="showPics(equipment)">查看附件</a>-->
-                    <!--</li>-->
-                    <!--<li role="menuitem">-->
-                      <!--<a class="dropdown-item" href="javascript:void(0);"-->
-                         <!--(click)="update(equipment)">修改</a>-->
-                    <!--</li>-->
-                    <!--<li role="menuitem">-->
-                      <!--<a class="dropdown-item" href="javascript:void(0);"-->
-                         <!--(click)="upload(equipment)">添加附件</a>-->
-                    <!--</li>-->
+                    <li role="menuitem" *ngIf="repair.repair_status===0">
+                      <a class="dropdown-item" href="javascript:void(0);"
+                         (click)="update(repair)">修改</a>
+                    </li>
                   </ul>
                 </div>
               </td>
@@ -80,73 +72,51 @@
   </div>
 </div>
 
-<!--<div bsModal #updateModal="bs-modal" class="modal fade" tabindex="0" role="dialog"-->
-     <!--aria-labelledby="myLargeModalLabel" aria-hidden="false">-->
-  <!--<div class="modal-dialog">-->
-    <!--<div class="modal-content">-->
-      <!--<div class="modal-header">-->
-        <!--<h4 class="modal-title pull-left">{{disable?'设备详情':'修改设备'}}</h4>-->
-        <!--<button type="button" class="close pull-right" (click)="updateModal.hide()" aria-label="Close">-->
-          <!--<span aria-hidden="true">&times;</span>-->
-        <!--</button>-->
-      <!--</div>-->
-      <!--<div class="modal-body">-->
-        <!--<form class="form-horizontal">-->
-          <!--<div class="form-group">-->
-            <!--<label class="control-label">编码</label>-->
-            <!--<label style="width: 100%">-->
-              <!--<input *ngIf="!disable" [(ngModel)]="f_equipment.code" type="text" class="form-control" id="updateEquipmentCode" name="updateEquipmentCode">-->
-              <!--<input *ngIf="disable" value="{{f_equipment.code}}" type="text" class="form-control" id="EquipmentCode" name="EquipmentCode" disabled>-->
-            <!--</label>-->
-            <!--<label class="control-label">名称</label>-->
-            <!--<label style="width: 100%">-->
-              <!--<input *ngIf="!disable" [(ngModel)]="f_equipment.name" type="text" class="form-control" id="updateEquipmentName" name="updateEquipmentName">-->
-              <!--<input *ngIf="disable" value="{{f_equipment.name}}" type="text" class="form-control" id="EquipmentName" name="EquipmentName" disabled>-->
-            <!--</label>-->
-            <!--<label class="control-label">批号</label>-->
-            <!--<label style="width: 100%">-->
-              <!--<input *ngIf="!disable" [(ngModel)]="f_equipment.batch_no" type="text" class="form-control" id="updateEquipmentBatchNo" name="updateEquipmentBatchNo">-->
-              <!--<input *ngIf="disable" value="{{f_equipment.batch_no}}" type="text" class="form-control" id="EquipmentBatchNo" name="EquipmentBatchNo" disabled>-->
-            <!--</label>-->
-            <!--<label class="control-label">购买日期</label>-->
-            <!--<label style="width: 100%">-->
-              <!--<input *ngIf="!disable" value="{{f_equipment.buy_date| date:'yyyy-MM-dd'}}" type="text" class="form-control" id="updateEquipmentBuyDate" name="updateEquipmentBuyDate"-->
-                     <!--#input (keyup)="getValue(input.value)">-->
-              <!--<input *ngIf="disable" value="{{f_equipment.buy_date| date:'yyyy-MM-dd'}}" type="text" class="form-control" id="EquipmentBuyDate" name="EquipmentBuyDate" disabled>-->
-            <!--</label>-->
+<div bsModal #updateModal="bs-modal" class="modal fade" tabindex="0" role="dialog"
+     aria-labelledby="myLargeModalLabel" aria-hidden="false">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title pull-left">{{disable?'报修详情':'修改报修'}}</h4>
+        <button type="button" class="close pull-right" (click)="updateModal.hide()" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form class="form-horizontal">
+          <div class="form-group">
+            <label class="control-label">内容</label>
+            <label style="width: 100%">
+              <textarea *ngIf="!disable" rows="6" cols="52" [(ngModel)]="f_Repair.content" name="updateEquipmentComments"></textarea>
+              <textarea *ngIf="disable" rows="6" cols="52" [(ngModel)]="f_Repair.content" name="EquipmentComments" disabled></textarea>
+            </label>
+            <label class="control-label">区域</label>
+            <label style="width: 100%">
+              <select *ngIf="!disable"  [(ngModel)]="f_Repair.area" name="area" class="form-control">
+                <option value="0">宿舍区</option>
+                <option value="1">教学区</option>
+              </select>
+              <select  *ngIf="disable" [(ngModel)]="f_Repair.area" name="area1" class="form-control" disabled>
+                <option value="0">宿舍区</option>
+                <option value="1">教学区</option>
+              </select>
+            </label>
+            <label class="control-label">报修地址</label>
+            <label style="width: 100%">
+              <input *ngIf="!disable" [(ngModel)]="f_Repair.address" type="text" class="form-control" id="updateEquipmentBatchNo" name="updateEquipmentBatchNo">
+              <input *ngIf="disable" value="{{f_Repair.address}}" type="text" class="form-control" id="EquipmentBatchNo" name="EquipmentBatchNo" disabled>
+            </label>
             <!--<label class="control-label">备注</label>-->
             <!--<label style="width: 100%">-->
-              <!--<textarea *ngIf="!disable" rows="6" cols="63" [(ngModel)]="f_equipment.commnets" name="updateEquipmentComments"></textarea>-->
-              <!--<textarea *ngIf="disable" rows="6" cols="63" [(ngModel)]="f_equipment.commnets" name="EquipmentComments" disabled></textarea>-->
-              <!--&lt;!&ndash;<input *ngIf="disable" value="{{f_equipment.commnets}}" type="text" class="form-control" id="EquipmentComments" name="EquipmentComments" disabled>&ndash;&gt;-->
+              <!--<textarea *ngIf="!disable" rows="6" cols="50" [(ngModel)]="f_Repair.comments" name="updateEquipmentComments"></textarea>-->
+              <!--<textarea *ngIf="disable" rows="6" cols="50" [(ngModel)]="f_Repair.comments" name="EquipmentComments" disabled></textarea>-->
             <!--</label>-->
-          <!--</div>-->
-        <!--</form>-->
-      <!--</div>-->
-      <!--<div class="modal-footer" *ngIf="!disable">-->
-        <!--<button type="button" class="btn btn-primary" (click)="submitEquipment()">确认</button>-->
-      <!--</div>-->
-    <!--</div>-->
-  <!--</div>-->
-<!--</div>-->
-
-<!--<div bsModal #showPictureModal="bs-modal" class="modal fade" tabindex="0" role="dialog"-->
-     <!--aria-labelledby="myLargeModalLabel" aria-hidden="false" >-->
-  <!--<div class="modal-dialog" >-->
-    <!--<div class="modal-content" style="width:800px;">-->
-      <!--<div class="modal-header">-->
-        <!--<h4 class="modal-title pull-left">附件</h4>-->
-        <!--<button type="button" class="close pull-right" (click)="showPictureModal.hide()" aria-label="Close">-->
-          <!--<span aria-hidden="true">&times;</span>-->
-        <!--</button>-->
-      <!--</div>-->
-      <!--<div class="modal-body">-->
-        <!--<carousel>-->
-          <!--<slide *ngFor="let image of images">-->
-            <!--<img src="{{image.filePath}}/{{image.fileName}}.{{image.fileFormat}}" alt="first slide" style="display: block; width: 100%;">-->
-          <!--</slide>-->
-        <!--</carousel>-->
-      <!--</div>-->
-    <!--</div>-->
-  <!--</div>-->
-<!--</div>-->
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer" *ngIf="!disable">
+        <button type="button" class="btn btn-primary" (click)="submitRepair()">确认</button>
+      </div>
+    </div>
+  </div>
+</div>

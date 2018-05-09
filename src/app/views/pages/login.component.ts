@@ -8,6 +8,7 @@ import {User} from '../../common/entity/User';
 import {BaseReactiveFormComponent} from '../../common/component/BaseReactiveFormComponent';
 import {MessageService} from '../../common/service/messageService';
 import {LoginService} from '../../common/service/loginService';
+import {UserService} from "../../common/service/userService";
 
 
 @Component({
@@ -21,7 +22,8 @@ export class LoginComponent extends BaseReactiveFormComponent<User> {
     constructor(protected a_router: Router,
                 protected _fb: FormBuilder,
                 protected _messageService: MessageService,
-                protected loginService: LoginService) {
+                protected loginService: LoginService,
+                protected userService: UserService) {
         super(a_router,  _fb, _messageService, false);
         this.domainObject = new User();
         super.buildForm();
@@ -73,7 +75,8 @@ export class LoginComponent extends BaseReactiveFormComponent<User> {
             this.loginService.login(user1).subscribe(
                 res => {
                     localStorage.setItem('token', res.token);
-                    localStorage.setItem('loginUser', JSON.stringify(user1));
+                    // localStorage.setItem('loginUser', JSON.stringify(user1));
+                    this.getUser(user1.name);
                     this.a_router.navigate([this.successURL]);
                 },
                 err => {
@@ -91,5 +94,17 @@ export class LoginComponent extends BaseReactiveFormComponent<User> {
         //         this.handleError("登录失败,请检查用户名及密码.");
         //     }
         // );
+    }
+    getUser(name: string) {
+        this.userService.getUserbyName(name).subscribe(res => {
+                // this.removeLocalStorage();
+                localStorage.setItem('loginUser', JSON.stringify(res.result));
+                localStorage.setItem('role', JSON.stringify(res.result.role));
+            }
+        );
+    }
+    removeLocalStorage() {
+        localStorage.removeItem('loginUser');
+        localStorage.removeItem('role');
     }
 }

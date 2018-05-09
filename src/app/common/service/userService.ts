@@ -31,4 +31,8 @@ export class UserService extends BaseService {
         return this.http.post(this.getServiceUrl() + '/user/querylist?page=' + userCriteria.skip , JSON.stringify(userCriteria) ,
             this.getJsonHeaderWithJWT()).map(res => res.json()).catch(this.handleError);
     }
+    getUserbyName(name: string) {
+        return this.http.get(this.getServiceUrl() + '/user/query?name=' + name,  this.getJsonHeaderWithJWT())
+            .map(res => res.json()).catch(this.handleError)
+    }
 }
