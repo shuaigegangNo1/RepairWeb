@@ -4,14 +4,14 @@
       <div class="panel panel-default">
         <div class="panel-heading">
           <h4 class="panel-title">
-            <span><i class="fa fa-users text-primary"></i>&nbsp; 设备管理</span>
+            <span><i class="fa fa-users text-primary"></i>&nbsp; 报修管理</span>
           </h4>
         </div>
         <div class="panel-body">
           <div class="table-responsive">
             <form class="form-inline" style="margin-bottom: 1rem">
               <div class="form-group" style="margin-top: 1rem">
-                <button class="btn-small btn-link"  type="button" (click)="create()">新建报修</button>
+                <button *ngIf="showCreate" class="btn-small btn-link"  type="button" (click)="create()">新建报修</button>
                 <input class="search form-control" placeholder="搜索信息" #term (ngModelChange)="searchEquipmentName()"
                        [(ngModel)]="repairCriteria.content" name="userInfo" style="margin-left: 1.25rem;">
               </div>

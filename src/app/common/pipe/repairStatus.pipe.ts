@@ -16,6 +16,8 @@ export class RepairStatusPipe implements PipeTransform {
         } else if (value === 2) {
             return '处理中';
         } else if (value === 3) {
+            return '待评价';
+        } else if (value === 4) {
             return '已完成';
         } else {
             return '';

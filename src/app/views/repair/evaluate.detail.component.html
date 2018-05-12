@@ -1,0 +1,47 @@
+<div class="row">
+    <div class="col-xl-12 col-lg-12">
+        <div class="card card-block">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <span><i class="fa fa-users text-primary"></i>&nbsp; 评估管理</span>
+                    </h4>
+                </div>
+                <div class="panel-body">
+                    <div class="table-responsive">
+                        <form class="form-horizontal">
+                            <div class="form-group" style="margin-top: 50px;">
+                                <label class="col-sm-2 control-label">评分等级</label>
+                                <div class="col-sm-8">
+                                    <select [(ngModel)]="evaluate.rate" name="rate" class="form-control">
+                                        <option value="20">一星</option>
+                                        <option value="40">二星</option>
+                                        <option value="60">三星</option>
+                                        <option value="80">四星</option>
+                                        <option value="100">五星</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group" style="margin-top: 50px;">
+                                <label class="col-sm-2 control-label">工作量（小时:H）</label>
+                                <div class="col-sm-8">
+                                    <input type="text" [(ngModel)]="evaluate.workload" class="form-control" id="inputWorkload"
+                                    name="inputWorkload" placeholder="请输入工作量">
+                                </div>
+                            </div>
+                            <div class="form-group" style="margin-top: 50px;">
+                                <label class="col-sm-2 control-label">备注</label>
+                                <div class="col-sm-8">
+                                    <textarea rows="6" cols="90" [(ngModel)]="evaluate.comments" name="comments"></textarea>
+                                </div>
+                            </div>
+                        </form>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-primary" (click)="createEvaluate()">保存</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

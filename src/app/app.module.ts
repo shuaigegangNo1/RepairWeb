@@ -75,6 +75,8 @@ import {EquipmentService} from './common/service/equipmentService';
 import {FileService} from './common/service/fileService';
 import {SharedModules} from './common/shareModule';
 import {RepairService} from "./common/service/repairService";
+import {RepairRecordService} from "./common/service/repairRecordService";
+import {EvaluateService} from "./common/service/evaluateService";
 @NgModule({
   imports: [
     BrowserModule,
@@ -102,7 +104,9 @@ import {RepairService} from "./common/service/repairService";
     UserService,
     EquipmentService,
     FileService,
-    RepairService
+    RepairService,
+    RepairRecordService,
+    EvaluateService
   ],
   bootstrap: [ AppComponent ]
 })

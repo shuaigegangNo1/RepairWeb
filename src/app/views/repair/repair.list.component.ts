@@ -19,13 +19,16 @@ export class RepairListComponent extends CustomPaginationComponent implements On
   searchStream = new Subject<RepairCriteria>();
   disable: boolean;
   loginUser: any;
-  // color: string;
+  showCreate: boolean;
   @ViewChild('updateModal') public updateModal: ModalDirective;
   constructor(protected router: Router, protected messageService: MessageService,
               private repairService: RepairService, private route: ActivatedRoute) {
     super(router, messageService);
     if (this.route.snapshot.params['id']) {
       this.repairCriteria.repair_status = this.route.snapshot.params['id'];
+      this.showCreate = false;
+    } else {
+      this.showCreate = true;
     }
     this.loginUser = JSON.parse(localStorage.getItem('loginUser'));
     this.repairCriteria.userName = this.loginUser.name;

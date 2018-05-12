@@ -1,0 +1,10 @@
+
+<accordion>
+    <accordion-group heading="XXX维修记录" [isOpen]="isFirstOpen" [isDisabled]="isFirstOpen"  [panelClass]="customClass">
+        <p>xxx维修记录追踪详情</p>
+        <accordion-group *ngFor="let repairRecord of repairRecordList" heading="{{repairRecord.create_time| date: 'yyyy/MM/dd HH:mm:ss'}}"  [isOpen]="isFirstOpen"  >
+            <p><strong>{{repairRecord.repair_progress}}</strong></p>
+        </accordion-group>
+    </accordion-group>
+
+</accordion>

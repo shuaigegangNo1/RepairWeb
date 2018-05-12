@@ -5,7 +5,6 @@ import {Injectable} from '@angular/core';
 import {Http} from '@angular/http';
 import {BaseService} from './baseService';
 import {DOMAIN_SERVER_URL} from '../constants';
-import {Observable} from 'rxjs/Observable';
 import {Repair, RepairCriteria} from "../entity/Repair";
 @Injectable()
 export class RepairService extends BaseService {
@@ -29,27 +28,6 @@ export class RepairService extends BaseService {
         return this.http.post(this.getServiceUrl() + '/repair/update' , JSON.stringify(repair),
             this.getJsonHeaderWithJWT()).map(res => res.json()).catch(this.handleError)
     }
-
-    // getChartData(){
-    //     return Observable.of([
-    //         {
-    //             "name": "Germany",
-    //             "value": 40632
-    //         },
-    //         {
-    //             "name": "United States",
-    //             "value": 49737
-    //         },
-    //         // {
-    //         //     "name": "France",
-    //         //     "value": 36745
-    //         // }
-    //     ]);
-    // }
-    // getEquipmentChartData() {
-    //     return this.http.get(this.getServiceUrl() + '/equipment/chartJson',
-    //         this.getJsonHeaderWithJWT()).map(res => res.json()).catch(this.handleError)
-    // }
     getRepairDetail(repairId: number) {
         return this.http.get(this.getServiceUrl() + '/repair/detail?repairId=' + repairId ,
             this.getJsonHeaderWithJWT()).map(res => res.json()).catch(this.handleError)

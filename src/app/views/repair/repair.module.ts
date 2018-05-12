@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 
 import {RepairRoutingModule} from './repair-routing.module';
-import {BsDatepickerModule, CarouselModule} from 'ngx-bootstrap';
+import {AccordionModule, BsDatepickerModule, CarouselModule} from 'ngx-bootstrap';
 import {NgxChartsModule} from '@swimlane/ngx-charts';
 import {SharedModules} from '../../common/shareModule';
 import {TinymceComponent} from '../../common/component/tinymce/tinymce.component';
@@ -10,6 +10,9 @@ import {RepairListComponent} from "./repair.list.component";
 import {AssertRepairListComponent} from "./assertRepair.list.component";
 import {AssertRepairDetailComponent} from "./assertRepair.detail.component";
 import { RatingModule } from 'ngx-bootstrap/rating';
+import {RepairRecordListComponent} from "./repairRecord.list.component";
+import {RepairRecordDetailComponent} from "./repairRecord.detail.component";
+import {EvaluateDetailComponent} from "./evaluate.detail.component";
 @NgModule({
   imports: [
     RepairRoutingModule,
@@ -17,9 +20,13 @@ import { RatingModule } from 'ngx-bootstrap/rating';
     CarouselModule.forRoot(),
     NgxChartsModule,
     SharedModules,
-    RatingModule.forRoot()
+    RatingModule.forRoot(),
+    AccordionModule.forRoot()
   ],
-  declarations: [ RepairDetailComponent, RepairListComponent,
-    AssertRepairListComponent, AssertRepairDetailComponent ]
+  declarations: [
+      RepairDetailComponent, RepairListComponent,
+      AssertRepairListComponent, AssertRepairDetailComponent,
+      RepairRecordListComponent, RepairRecordDetailComponent,
+      EvaluateDetailComponent]
 })
 export class RepairModule { }

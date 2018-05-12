@@ -6,6 +6,8 @@ import {CustomPaginationComponent} from '../pagination/pagination.component';
 import {Subject} from 'rxjs/Subject';
 import {Repair, RepairCriteria} from "../../common/entity/Repair";
 import {RepairService} from "../../common/service/repairService";
+import {Evaluate} from "../../common/entity/Evaluate";
+import {EvaluateService} from "../../common/service/evaluateService";
 
 @Component({
   templateUrl: 'assertRepair.list.component.html'
@@ -15,13 +17,14 @@ export class AssertRepairListComponent extends CustomPaginationComponent impleme
   page  = 0;
   repairCriteria: RepairCriteria = new RepairCriteria();
   f_Repair: Repair = new Repair();
+  f_Evaluate: Evaluate = new Evaluate();
   searchStream = new Subject<RepairCriteria>();
   disable: boolean;
   loginUser: any;
-  // color: string;
   @ViewChild('updateModal') public updateModal: ModalDirective;
   constructor(protected router: Router, protected messageService: MessageService,
-              private repairService: RepairService, private route: ActivatedRoute) {
+              private repairService: RepairService, private evaluateService: EvaluateService,
+              private route: ActivatedRoute) {
     super(router, messageService);
     if (this.route.snapshot.params['id']) {
       this.repairCriteria.repair_status = this.route.snapshot.params['id'];
@@ -80,25 +83,22 @@ export class AssertRepairListComponent extends CustomPaginationComponent impleme
   searchEquipmentName() {
     this.searchStream.next(this.repairCriteria);
   }
-  showDetail(repair: Repair) {
+  showRepair(repair: Repair) {
     this.disable = true;
     this.f_Repair = repair;
     this.updateModal.show();
   }
-  // getValue(value: any) {
-  //   this.f_equipment.buy_date = value;
-  // }
-  // showPics(equipment: Equipment) {
-  //   this.attachmentCriteria.equipment_id = equipment.id;
-  //   this.fileService.getAttachmentList(this.attachmentCriteria).subscribe(
-  //       res=>{
-  //         this.images = res.attachmentList.content;
-  //         this.showPictureModal.show();
-  //       }
-  //   )
-  //
-  // }
-  // upload(equipment: Equipment) {
-  //   this.router.navigate(['/equipment/upload', equipment.id]);
-  // }
+  addRepairItem(repair: Repair) {
+    this.router.navigate(['/repair/createRepairRecord', repair.id]);
+  }
+  checkRepairRecord(repair: Repair) {
+    this.router.navigate(['/repair/repairRecordList', repair.id]);
+  }
+  evaluateRepair(repair: Repair) {
+    this.router.navigate(['/repair/createEvaluate', repair.id]);
+  }
+  // TODO: show  Evaluate Detail in html
+  showEvaluate(repair: Repair) {
+    this.evaluateService.getEvaluateDetail(repair.id).subscribe(res => this.f_Evaluate = res.result)
+  }
 }

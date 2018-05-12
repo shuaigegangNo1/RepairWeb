@@ -4,6 +4,9 @@ import {RepairDetailComponent} from "./repair.detail.component";
 import {RepairListComponent} from "./repair.list.component";
 import {AssertRepairListComponent} from "./assertRepair.list.component";
 import {AssertRepairDetailComponent} from "./assertRepair.detail.component";
+import {RepairRecordListComponent} from "./repairRecord.list.component";
+import {RepairRecordDetailComponent} from "./repairRecord.detail.component";
+import {EvaluateDetailComponent} from "./evaluate.detail.component";
 
 
 const routes: Routes = [
@@ -50,26 +53,40 @@ const routes: Routes = [
     }
   },
   {
+    path: 'evaluateRepairList/:id',
+    component: AssertRepairListComponent,
+    data: {
+      title: 'EvaluateRepairList'
+    }
+  },
+  {
     path: 'historyRepairList/:id',
     component: AssertRepairListComponent,
     data: {
       title: 'HistoryRepairList'
     }
   },
-  // {
-  //   path: 'chart',
-  //   component: BarChartComponent,
-  //   data: {
-  //     title: 'Chart'
-  //   }
-  // },
-  // {
-  //   path: 'update/:eid',
-  //   component: EquipmentDetailComponent,
-  //   data: {
-  //     title: 'Update'
-  //   }
-  // },
+  {
+    path: 'repairRecordList/:id',
+    component: RepairRecordListComponent,
+    data: {
+      title: 'RepairRecordList'
+    }
+  },
+  {
+    path: 'createRepairRecord/:id',
+    component: RepairRecordDetailComponent,
+    data: {
+      title: 'CreateRepairRecord'
+    }
+  },
+  {
+    path: 'createEvaluate/:id',
+    component: EvaluateDetailComponent,
+    data: {
+      title: 'CreateEvaluate'
+    }
+  },
 ];
 
 @NgModule({

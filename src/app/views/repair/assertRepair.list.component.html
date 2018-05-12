@@ -44,7 +44,7 @@
                   <ul *dropdownMenu class="dropdown-menu" role="menu">
                     <li role="menuitem">
                       <a class="dropdown-item" href="javascript:void(0);"
-                         (click)="showDetail(repair)">详情</a>
+                         (click)="showRepair(repair)">详情</a>
                     </li>
                     <!--<li role="menuitem">-->
                       <!--<a class="dropdown-item" href="javascript:void(0);"-->
@@ -58,10 +58,18 @@
                       <a class="dropdown-item" href="javascript:void(0);"
                          (click)="addRepairItem(repair)">添加维修记录</a>
                     </li>
-                    <!--<li role="menuitem">-->
-                      <!--<a class="dropdown-item" href="javascript:void(0);"-->
-                         <!--(click)="upload(equipment)">添加附件</a>-->
-                    <!--</li>-->
+                    <li role="menuitem" *ngIf="repair.repair_status ===3">
+                      <a class="dropdown-item" href="javascript:void(0);"
+                         (click)="evaluateRepair(repair)">评价</a>
+                    </li>
+                    <li role="menuitem" *ngIf="repair.repair_status !==0">
+                      <a class="dropdown-item" href="javascript:void(0);"
+                         (click)="checkRepairRecord(repair)">维修跟踪</a>
+                    </li>
+                    <li role="menuitem" *ngIf="repair.repair_status ==4">
+                      <a class="dropdown-item" href="javascript:void(0);"
+                         (click)="showEvaluate(repair)">查看评价</a>
+                    </li>
                   </ul>
                 </div>
               </td>

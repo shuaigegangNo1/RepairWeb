@@ -35,30 +35,17 @@
                                 </div>
                             </div>
                             <div class="form-group" style="margin-top: 50px;">
-                                <label class="col-sm-2 control-label">状态</label>
+                                <label class="col-sm-2 control-label">审批意见</label>
                                 <div class="col-sm-8">
-                                    <select [(ngModel)]="repair.repair_status" name="status" class="form-control">
-                                        <option value="0">未受理</option>
-                                        <option value="1">不予受理</option>
-                                        <option value="2">处理中</option>
-                                        <option value="3">已完成</option>
+                                    <select [(ngModel)]="status" name="status" class="form-control">
+                                        <!--<option value="0">未受理</option>-->
+                                        <option value="1">不同意</option>
+                                        <option value="2">同意</option>
+                                        <!--<option value="3">已完成</option>-->
                                     </select>
                                 </div>
                             </div>
-                            <div class="form-group" style="margin-top: 50px;" *ngIf="repair.repair_status ==3">
-                                <label class="col-sm-2 control-label">使用材料</label>
-                                <div class="col-sm-8">
-                                    <input type="text" [(ngModel)]="repair.material" class="form-control" id="inputMaterial"
-                                           name="inputMaterial" placeholder="请输入材料">
-                                </div>
-                            </div>
-                            <div class="form-group" style="margin-top: 50px;" *ngIf="repair.repair_status ==3">
-                                <label class="col-sm-2 control-label">维修结果</label>
-                                <div class="col-sm-8">
-                                    <input type="text" [(ngModel)]="repair.result" class="form-control" id="inputResult"
-                                           name="inputResult" placeholder="请输入维修结果">
-                                </div>
-                            </div>
+
                             <!--<div class="form-group" style="margin-top: 50px;">-->
                                 <!--<rating [(ngModel)]="rate" [max]="max" [readonly]="isReadonly"-->
                                         <!--(onHover)="hoveringOver($event)" (onLeave)="resetStar()"-->
@@ -101,8 +88,8 @@
                             </div>
                         </form>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-primary" (click)="reject()">拒绝</button>
-                            <button type="button" class="btn btn-primary" (click)="accept()">同意</button>
+                            <button type="button" class="btn btn-primary" (click)="audit()">审批</button>
+                            <!--<button type="button" class="btn btn-primary" (click)="accept()">同意</button>-->
                         </div>
                     </div>
                 </div>

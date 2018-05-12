@@ -2,6 +2,6 @@ export class BaseModule {
   id?: number;
   creator: string;
   updater: string;
-  create_date: Date;
-  update_date: Date;
+  create_time: Date;
+  update_time: Date;
 }

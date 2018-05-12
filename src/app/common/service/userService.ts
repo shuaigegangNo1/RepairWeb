@@ -35,4 +35,7 @@ export class UserService extends BaseService {
         return this.http.get(this.getServiceUrl() + '/user/query?name=' + name,  this.getJsonHeaderWithJWT())
             .map(res => res.json()).catch(this.handleError)
     }
+    // TODO: get userList by role
+    getUserListbyRole() {
+    }
 }
