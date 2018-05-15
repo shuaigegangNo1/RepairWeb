@@ -11,6 +11,18 @@
                     <div class="table-responsive">
                         <form class="form-horizontal">
                             <div class="form-group" style="margin-top: 50px;">
+                                <label class="col-sm-2 control-label">用户评分等级</label>
+                                <div class="col-sm-8">
+                                    <select [(ngModel)]="rate" name="userRate" class="form-control" disabled>
+                                        <option value="20">一星</option>
+                                        <option value="40">二星</option>
+                                        <option value="60">三星</option>
+                                        <option value="80">四星</option>
+                                        <option value="100">五星</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group" style="margin-top: 50px;">
                                 <label class="col-sm-2 control-label">评分等级</label>
                                 <div class="col-sm-8">
                                     <select [(ngModel)]="evaluate.rate" name="rate" class="form-control">

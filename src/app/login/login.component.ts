@@ -11,10 +11,9 @@ import {MessageService} from '../common/service/messageService';
     templateUrl: "login.component.html"
 })
 export class AppLoginComponent extends BaseAuthenticateComponent {
-    successURL = '/user';
+    successURL: string;
 
     user: User = new User();
-
     constructor(protected a_router: Router, private messageService: MessageService) {
         super(a_router, messageService, false);
     }

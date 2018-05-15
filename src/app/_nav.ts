@@ -15,7 +15,7 @@ export const navigation = [
       },
       {
         name: '历史报修',
-        url: '/repair/history/3',
+        url: '/repair/history/4',
         icon: 'icon-puzzle'
       }
     ]

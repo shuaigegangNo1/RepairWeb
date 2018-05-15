@@ -20,8 +20,10 @@ export class AssertRepairListComponent extends CustomPaginationComponent impleme
   f_Evaluate: Evaluate = new Evaluate();
   searchStream = new Subject<RepairCriteria>();
   disable: boolean;
+  showDisable: boolean;
   loginUser: any;
   @ViewChild('updateModal') public updateModal: ModalDirective;
+  @ViewChild('showModal') public showModal: ModalDirective;
   constructor(protected router: Router, protected messageService: MessageService,
               private repairService: RepairService, private evaluateService: EvaluateService,
               private route: ActivatedRoute) {
@@ -95,10 +97,14 @@ export class AssertRepairListComponent extends CustomPaginationComponent impleme
     this.router.navigate(['/repair/repairRecordList', repair.id]);
   }
   evaluateRepair(repair: Repair) {
-    this.router.navigate(['/repair/createEvaluate', repair.id]);
+    this.router.navigate(['/repair/createEvaluate'], {queryParams: {'id': repair.id, 'rate': repair.rate}});
   }
   // TODO: show  Evaluate Detail in html
   showEvaluate(repair: Repair) {
-    this.evaluateService.getEvaluateDetail(repair.id).subscribe(res => this.f_Evaluate = res.result)
+    this.evaluateService.getEvaluateDetail(repair.id).subscribe(res => {
+      this.f_Evaluate = res.result;
+      this.showDisable = true;
+      this.showModal.show();
+    })
   }
 }

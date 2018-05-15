@@ -18,4 +18,5 @@ export class RepairCriteria extends BaseCriteria {
     content = '';
     userName?: string;
     repair_status?: number;
+    isFinish = '';
 }

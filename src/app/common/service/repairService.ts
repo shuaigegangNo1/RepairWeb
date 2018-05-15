@@ -32,4 +32,8 @@ export class RepairService extends BaseService {
         return this.http.get(this.getServiceUrl() + '/repair/detail?repairId=' + repairId ,
             this.getJsonHeaderWithJWT()).map(res => res.json()).catch(this.handleError)
     }
+    updateRepairman(repairId: number , repairmanId: number) {
+        return this.http.get(this.getServiceUrl() + '/repair/update?repairId=' + repairId + '&repairmanId=' +  repairmanId,
+            this.getJsonHeaderWithJWT()).map(res => res.json()).catch(this.handleError)
+    }
 }

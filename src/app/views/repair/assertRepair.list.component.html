@@ -144,23 +144,52 @@
   </div>
 </div>
 
-<!--<div bsModal #showPictureModal="bs-modal" class="modal fade" tabindex="0" role="dialog"-->
-     <!--aria-labelledby="myLargeModalLabel" aria-hidden="false" >-->
-  <!--<div class="modal-dialog" >-->
-    <!--<div class="modal-content" style="width:800px;">-->
-      <!--<div class="modal-header">-->
-        <!--<h4 class="modal-title pull-left">附件</h4>-->
-        <!--<button type="button" class="close pull-right" (click)="showPictureModal.hide()" aria-label="Close">-->
-          <!--<span aria-hidden="true">&times;</span>-->
-        <!--</button>-->
-      <!--</div>-->
-      <!--<div class="modal-body">-->
-        <!--<carousel>-->
-          <!--<slide *ngFor="let image of images">-->
-            <!--<img src="{{image.filePath}}/{{image.fileName}}.{{image.fileFormat}}" alt="first slide" style="display: block; width: 100%;">-->
-          <!--</slide>-->
-        <!--</carousel>-->
-      <!--</div>-->
-    <!--</div>-->
-  <!--</div>-->
-<!--</div>-->
+<div bsModal #showModal="bs-modal" class="modal fade" tabindex="0" role="dialog"
+     aria-labelledby="myLargeModalLabel" aria-hidden="false">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title pull-left">评价详情</h4>
+        <button type="button" class="close pull-right" (click)="showModal.hide()" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form class="form-horizontal">
+          <div class="form-group">
+            <label class="control-label">评价等级</label>
+            <label style="width: 100%">
+              <select *ngIf="!showDisable"  [(ngModel)]="f_Evaluate.rate" name="updateEvaluate" class="form-control">
+                <option value="20">一星</option>
+                <option value="40">二星</option>
+                <option value="60">三星</option>
+                <option value="80">四星</option>
+                <option value="100">五星</option>
+              </select>
+              <select  *ngIf="showDisable" [(ngModel)]="f_Evaluate.rate" name="evaluate" class="form-control" disabled>
+                <option value="20">一星</option>
+                <option value="40">二星</option>
+                <option value="60">三星</option>
+                <option value="80">四星</option>
+                <option value="100">五星</option>
+              </select>
+            </label>
+            <label class="control-label">工作量</label>
+            <label style="width: 100%">
+              <input *ngIf="!showDisable" [(ngModel)]="f_Evaluate.workload" type="text" class="form-control" id="updateWorkload" name="updateWorkload">
+              <input *ngIf="showDisable" value="{{f_Evaluate.workload}}" type="text" class="form-control" id="Workload" name="Workload" disabled>
+            </label>
+            <label class="control-label">备注</label>
+            <label style="width: 100%">
+              <textarea *ngIf="!showDisable" rows="6" cols="60" [(ngModel)]="f_Evaluate.comments" name="updateEvaluateComments"></textarea>
+              <textarea *ngIf="showDisable" rows="6" cols="60" [(ngModel)]="f_Evaluate.comments" name="Comments" disabled></textarea>
+            </label>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer" *ngIf="!showDisable">
+        <button type="button" class="btn btn-primary" (click)="submitRepair()">确认</button>
+      </div>
+    </div>
+  </div>
+</div>

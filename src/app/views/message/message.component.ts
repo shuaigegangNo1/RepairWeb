@@ -7,10 +7,10 @@ import {ActivatedRoute, Router} from '@angular/router';
 @Component({
     templateUrl: 'message.component.html'
 })
-export class MessageComponent implements OnInit{
+export class MessageComponent implements OnInit {
     message: string;
     returnUrl: string;
-    constructor(protected router: Router,private activeRoute:ActivatedRoute) {
+    constructor(protected router: Router, private activeRoute: ActivatedRoute) {
 
     }
     ngOnInit() {

@@ -69,14 +69,20 @@ export class LoginComponent extends BaseReactiveFormComponent<User> {
             this.handleError("登录失败,请检查用户名及密码.");
         }
         else {
-            this.successURL = '/user';
-            //this._messageService.pushMessage({type: "login"});
+            // this.successURL = '/user';
+
             const user1 = {'name': this.domainObject.username, 'password' : this.domainObject.password}
             this.loginService.login(user1).subscribe(
                 res => {
                     localStorage.setItem('token', res.token);
                     // localStorage.setItem('loginUser', JSON.stringify(user1));
                     this.getUser(user1.name);
+                    if (this.domainObject.username === 'admin') {
+                        this.successURL = '/repair/assertRepairList/0';
+                    }else {
+                        this.successURL = '/repair';
+                    }
+                    this._messageService.pushMessage({type: "login"});
                     this.a_router.navigate([this.successURL]);
                 },
                 err => {
@@ -103,8 +109,5 @@ export class LoginComponent extends BaseReactiveFormComponent<User> {
             }
         );
     }
-    removeLocalStorage() {
-        localStorage.removeItem('loginUser');
-        localStorage.removeItem('role');
-    }
+
 }

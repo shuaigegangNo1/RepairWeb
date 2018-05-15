@@ -14,19 +14,18 @@ import {RepairService} from "../../common/service/repairService";
 })
 export class EvaluateDetailComponent {
     evaluate: Evaluate = new Evaluate();
-    repairId: number;
     loginUser: any;
     repair: Repair = new Repair();
+    rate: number;
     constructor(protected router: Router, private messageService: MessageService,
                 private evaluateService: EvaluateService, private repairService: RepairService,
                 private route: ActivatedRoute) {
-        if (this.route.snapshot.params['id']) {
-            this.repair.id = this.route.snapshot.params['id'];
-        }
+        this.route.queryParams.subscribe(params => {
+            this.repair.id = params['id'];
+            this.rate = params['rate'];
+        });
     }
     createEvaluate() {
-        // this.repair.repair_status = 0;
-        // this.repairId = 1;
         this.evaluateService.create(this.repair.id, this.evaluate).subscribe(
             res => {
                 this.updateRepairStatus();

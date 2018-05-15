@@ -21,6 +21,7 @@ export class RepairListComponent extends CustomPaginationComponent implements On
   loginUser: any;
   showCreate: boolean;
   @ViewChild('updateModal') public updateModal: ModalDirective;
+  @ViewChild('evaluateModal') public evaluateModal: ModalDirective;
   constructor(protected router: Router, protected messageService: MessageService,
               private repairService: RepairService, private route: ActivatedRoute) {
     super(router, messageService);
@@ -28,6 +29,8 @@ export class RepairListComponent extends CustomPaginationComponent implements On
       this.repairCriteria.repair_status = this.route.snapshot.params['id'];
       this.showCreate = false;
     } else {
+      this.repairCriteria.repair_status = 4;
+      this.repairCriteria.isFinish = 'n';
       this.showCreate = true;
     }
     this.loginUser = JSON.parse(localStorage.getItem('loginUser'));
@@ -54,6 +57,7 @@ export class RepairListComponent extends CustomPaginationComponent implements On
 
   }
   getRepairList() {
+
     this.repairService.getRepairList(this.repairCriteria).subscribe(res => {
       this.repairList = res.result.content;
       this.totalItems[0] = res.result.totalElements;
@@ -88,6 +92,22 @@ export class RepairListComponent extends CustomPaginationComponent implements On
     this.disable = true;
     this.f_Repair = repair;
     this.updateModal.show();
+  }
+  evaluate(repair: Repair) {
+    this.f_Repair = repair;
+    this.evaluateModal.show();
+  }
+  evaluateRepair() {
+    if (this.f_Repair.rate) {
+      this.repairService.update(this.f_Repair).subscribe(res => {
+        console.log(">>>res>>", res.result);
+        this.messageService.pushMessage({title: 'Success', content: '评价成功', type: 'success'});
+        this.evaluateModal.hide();
+      })
+    }else {
+      this.messageService.pushMessage({title: 'Error', content: '请评价', type: 'error'});
+    }
+
   }
   // getValue(value: any) {
   //   this.f_equipment.buy_date = value;

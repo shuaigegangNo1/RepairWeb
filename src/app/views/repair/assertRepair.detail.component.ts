@@ -6,6 +6,8 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {MessageService} from '../../common/service/messageService';
 import {Repair} from '../../common/entity/Repair';
 import {RepairService} from '../../common/service/repairService';
+import {UserService} from "../../common/service/userService";
+import {User} from "../../common/entity/User";
 @Component({
     selector: 'app-assert-repair-detail',
     templateUrl: 'assertRepair.detail.component.html'
@@ -22,8 +24,11 @@ export class AssertRepairDetailComponent {
     overStar: number;
     percent: number;
     status: number;
+    repairmanList: Array<User>;
+    repairmanId: number;
     constructor(protected router: Router, private messageService: MessageService,
-                private repairService: RepairService, private route: ActivatedRoute) {
+                private repairService: RepairService, private userService: UserService,
+                private route: ActivatedRoute) {
         if (this.route.snapshot.params['id']) {
             this.repair.id = this.route.snapshot.params['id'];
         }
@@ -31,6 +36,7 @@ export class AssertRepairDetailComponent {
         // this.repair.repair_status = 2;
         this.status = 2;
         this.showRepairDetail();
+        this.getRepairManList();
     }
     setContent(content: any) {
         this.repair.comments = content;
@@ -48,8 +54,14 @@ export class AssertRepairDetailComponent {
     }
     audit() {
         this.repair.repair_status = this.status;
-        this.repairService.update(this.repair).subscribe(res => console.log('>>>>res>>>>' + JSON.stringify(res)));
+        this.repairService.update(this.repair).subscribe(res => console.log('>>>>update repair_status>>>>' + JSON.stringify(res)));
+        this.repairService.updateRepairman(this.repair.id, this.repairmanId).subscribe(res =>
+            console.log('>>>>update repairman>>>>' + JSON.stringify(res)));
         this.router.navigate(['/message'], {queryParams: {'message': '审批完成!', 'url': '/repair/assertRepairList'}});
     }
-    // TODO: select repairman
+    getRepairManList() {
+        const role = 2;
+        this.userService.getUserListbyRole(+role).subscribe(res => this.repairmanList = res.result)
+
+    }
 }

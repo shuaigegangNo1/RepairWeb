@@ -25,6 +25,13 @@ const routes: Routes = [
     }
   },
   {
+    path: 'evaluate/:id',
+    component: RepairListComponent,
+    data: {
+      title: 'EvaluateRepairList'
+    }
+  },
+  {
     path: 'create',
     component: RepairDetailComponent,
     data: {
@@ -81,7 +88,7 @@ const routes: Routes = [
     }
   },
   {
-    path: 'createEvaluate/:id',
+    path: 'createEvaluate',
     component: EvaluateDetailComponent,
     data: {
       title: 'CreateEvaluate'

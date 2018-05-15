@@ -70,11 +70,11 @@
       <div class="dropdown-menu dropdown-menu-right" *dropdownMenu aria-labelledby="simple-dropdown">
         <div class="divider"></div>
         <!--<a class="dropdown-item" href="#"><i class="fa fa-shield"></i> Lock account</a>-->
-        <a class="dropdown-item" href="/login"><i class="fa fa-lock"></i> Logout</a>
+        <a class="dropdown-item" href="/login" (click)="logout()"><i class="fa fa-lock"></i> Logout</a>
       </div>
     </li>
-    <button class="navbar-toggler d-md-down-none" type="button" appAsideMenuToggler>
-      <span class="navbar-toggler-icon"></span>
-    </button>
+    <!--<button class="navbar-toggler d-md-down-none" type="button" appAsideMenuToggler>-->
+      <!--<span class="navbar-toggler-icon"></span>-->
+    <!--</button>-->
   </ul>
 </header>
