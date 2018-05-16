@@ -35,6 +35,13 @@
                                 </div>
                             </div>
                             <div class="form-group" style="margin-top: 50px;">
+                                <label class="col-sm-2 control-label">联系方式</label>
+                                <div class="col-sm-8">
+                                    <input type="text" [(ngModel)]="repair.telephone" class="form-control" id="inputTelephone"
+                                           name="inputTelephone" placeholder="请输入联系方式" disabled>
+                                </div>
+                            </div>
+                            <div class="form-group" style="margin-top: 50px;">
                                 <label class="col-sm-2 control-label">审批意见</label>
                                 <div class="col-sm-8">
                                     <select [(ngModel)]="status" name="status" class="form-control">

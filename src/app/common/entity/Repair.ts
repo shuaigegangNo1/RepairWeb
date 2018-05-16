@@ -7,10 +7,12 @@ export class Repair extends BaseModule {
     content?: string;
     area?: number;
     address?: string;
+    telephone?: string;
     repair_status?: number;
     material?: string;
     result?: string;
     rate?: string;
+    isEvaluate?: string;
     comments?: string;
 }
 
@@ -19,4 +21,5 @@ export class RepairCriteria extends BaseCriteria {
     userName?: string;
     repair_status?: number;
     isFinish = '';
+    isEvaluate = '';
 }

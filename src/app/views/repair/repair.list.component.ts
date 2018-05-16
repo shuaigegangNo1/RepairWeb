@@ -26,11 +26,11 @@ export class RepairListComponent extends CustomPaginationComponent implements On
               private repairService: RepairService, private route: ActivatedRoute) {
     super(router, messageService);
     if (this.route.snapshot.params['id']) {
-      this.repairCriteria.repair_status = this.route.snapshot.params['id'];
+      // this.repairCriteria.repair_status = this.route.snapshot.params['id'];
+      this.repairCriteria.isEvaluate = 'y';
       this.showCreate = false;
     } else {
-      this.repairCriteria.repair_status = 4;
-      this.repairCriteria.isFinish = 'n';
+      this.repairCriteria.isEvaluate = 'n';
       this.showCreate = true;
     }
     this.loginUser = JSON.parse(localStorage.getItem('loginUser'));
@@ -99,6 +99,7 @@ export class RepairListComponent extends CustomPaginationComponent implements On
   }
   evaluateRepair() {
     if (this.f_Repair.rate) {
+      this.f_Repair.isEvaluate = 'y';
       this.repairService.update(this.f_Repair).subscribe(res => {
         console.log(">>>res>>", res.result);
         this.messageService.pushMessage({title: 'Success', content: '评价成功', type: 'success'});

@@ -33,7 +33,7 @@
               <td>{{repair?.content}}</td>
                 <td>{{repair?.area | area}}</td>
                 <td>{{repair?.address}}</td>
-                <td>{{repair?.repair_status | repairStatus}}</td>
+                <td>{{repair.isEvaluate === 'y'? '已完成': repair?.repair_status | repairStatus}}</td>
               <td>
                 <div class="btn-group-xs" dropdown container="body">
                   <button dropdownToggle type="button" class="btn btn-primary dropdown-toggle">
@@ -48,7 +48,7 @@
                       <a class="dropdown-item" href="javascript:void(0);"
                          (click)="update(repair)">修改</a>
                     </li>
-                    <li role="menuitem" *ngIf="repair.repair_status===3">
+                    <li role="menuitem" *ngIf="repair.repair_status===3 && repair.isEvaluate==='n' ">
                       <a class="dropdown-item" href="javascript:void(0);"
                          (click)="evaluate(repair)">评价</a>
                     </li>
@@ -91,8 +91,8 @@
           <div class="form-group">
             <label class="control-label">内容</label>
             <label style="width: 100%">
-              <textarea *ngIf="!disable" rows="6" cols="52" [(ngModel)]="f_Repair.content" name="updateEquipmentComments"></textarea>
-              <textarea *ngIf="disable" rows="6" cols="52" [(ngModel)]="f_Repair.content" name="EquipmentComments" disabled></textarea>
+              <textarea *ngIf="!disable" rows="6" cols="52" [(ngModel)]="f_Repair.content" name="updateContent"></textarea>
+              <textarea *ngIf="disable" rows="6" cols="52" [(ngModel)]="f_Repair.content" name="content" disabled></textarea>
             </label>
             <label class="control-label">区域</label>
             <label style="width: 100%">
@@ -107,8 +107,13 @@
             </label>
             <label class="control-label">报修地址</label>
             <label style="width: 100%">
-              <input *ngIf="!disable" [(ngModel)]="f_Repair.address" type="text" class="form-control" id="updateEquipmentBatchNo" name="updateEquipmentBatchNo">
-              <input *ngIf="disable" value="{{f_Repair.address}}" type="text" class="form-control" id="EquipmentBatchNo" name="EquipmentBatchNo" disabled>
+              <input *ngIf="!disable" [(ngModel)]="f_Repair.address" type="text" class="form-control"  name="updateAddress">
+              <input *ngIf="disable"  [(ngModel)]="f_Repair.address" type="text" class="form-control"  name="address" disabled>
+            </label>
+            <label class="control-label">联系方式</label>
+            <label style="width: 100%">
+              <input *ngIf="!disable" [(ngModel)]="f_Repair.telephone" type="text" class="form-control"  name="updateTelephone">
+              <input *ngIf="disable"  [(ngModel)]="f_Repair.telephone" type="text" class="form-control"  name="telephone" disabled>
             </label>
             <!--<label class="control-label">备注</label>-->
             <!--<label style="width: 100%">-->
@@ -140,7 +145,7 @@
           <div class="form-group">
             <label class="control-label">评价等级</label>
             <label style="width: 100%">
-              <select [(ngModel)]="f_Repair.rate" name="updateEvaluate" class="form-control">
+              <select [(ngModel)]="f_Repair.rate" name="rate" class="form-control">
                 <option value="20">一星</option>
                 <option value="40">二星</option>
                 <option value="60">三星</option>
