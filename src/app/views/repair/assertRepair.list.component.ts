@@ -107,4 +107,7 @@ export class AssertRepairListComponent extends CustomPaginationComponent impleme
       this.showModal.show();
     })
   }
+  JumpToPrint(repair: Repair) {
+    this.router.navigate(['/repair/print']);
+  }
 }

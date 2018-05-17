@@ -13,6 +13,8 @@ import { RatingModule } from 'ngx-bootstrap/rating';
 import {RepairRecordListComponent} from "./repairRecord.list.component";
 import {RepairRecordDetailComponent} from "./repairRecord.detail.component";
 import {EvaluateDetailComponent} from "./evaluate.detail.component";
+import {PrintModalComponent} from "./printer.component";
+import {EssenceNg2PrintModule} from "essence-ng2-print";
 @NgModule({
   imports: [
     RepairRoutingModule,
@@ -21,12 +23,13 @@ import {EvaluateDetailComponent} from "./evaluate.detail.component";
     NgxChartsModule,
     SharedModules,
     RatingModule.forRoot(),
-    AccordionModule.forRoot()
+    AccordionModule.forRoot(),
+    EssenceNg2PrintModule
   ],
   declarations: [
       RepairDetailComponent, RepairListComponent,
       AssertRepairListComponent, AssertRepairDetailComponent,
       RepairRecordListComponent, RepairRecordDetailComponent,
-      EvaluateDetailComponent]
+      EvaluateDetailComponent,PrintModalComponent]
 })
 export class RepairModule { }

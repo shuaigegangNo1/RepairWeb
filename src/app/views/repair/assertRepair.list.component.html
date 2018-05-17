@@ -58,6 +58,10 @@
                       <a class="dropdown-item" href="javascript:void(0);"
                          (click)="addRepairItem(repair)">添加维修记录</a>
                     </li>
+                    <li role="menuitem" *ngIf="repair.repair_status ===2">
+                      <a class="dropdown-item" href="javascript:void(0);"
+                         (click)="JumpToPrint(repair)">打印</a>
+                    </li>
                     <li role="menuitem" *ngIf="repair.repair_status ===3">
                       <a class="dropdown-item" href="javascript:void(0);"
                          (click)="evaluateRepair(repair)">评价</a>

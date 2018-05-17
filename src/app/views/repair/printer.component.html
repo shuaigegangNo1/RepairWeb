@@ -1,0 +1,98 @@
+<div class="modal-body" #print_div>
+<h1 style="text-align: center; margin-top: 6%">报修单</h1>
+    <form class="form-horizontal">
+        <div class="form-group" style="margin-top: 3%">
+            <div style="margin-top: 5px;">
+                <label style="width: 9%"></label>
+                <label class="control-label">报修人:</label>
+                <label style="width: 30%">
+                    <input  [(ngModel)]="newUser.name" type="text" class="form-control" id="createUserName" name="createUserName">
+                </label>
+                <label style="width: 10%"></label>
+                <label class="control-label">联系方式:</label>
+                <label style="width: 30%">
+                    <input  [(ngModel)]="newUser.email" type="text" class="form-control" id="createUserEmail" name="createUserEmail">
+                </label>
+            </div>
+
+            <br>
+            <div style="margin-top: 5px;">
+                <label style="width: 7.5%"></label>
+                <label class="control-label">保修内容:</label>
+                <label style="width: 76%">
+                    <input  [(ngModel)]="repair.content" type="text" class="form-control" id="Content" name="Content">
+                </label>
+            </div>
+            <br>
+            <div style="margin-top: 5px;">
+            <label style="width: 10.5%"></label>
+            <label class="control-label">区域:</label>
+            <label style="width: 30%">
+                <input  [(ngModel)]="repair.area" type="text" class="form-control" id="Area" name="Area">
+            </label>
+            <label style="width: 10%"></label>
+            <label class="control-label">详细地址:</label>
+            <label style="width: 30%">
+                <input  [(ngModel)]="repair.address" type="text" class="form-control" id="Address" name="Address">
+            </label>
+            </div>
+            <br>
+            <div style="margin-top: 5px;">
+                <label style="width: 8%"></label>
+                <label class="control-label">报修时间:</label>
+                <label style="width: 30%">
+                    <input  [(ngModel)]="repair.create_time" type="text" class="form-control" id="createTime" name="createTime">
+                </label>
+                <label style="width: 10%"></label>
+                <label class="control-label">维修人:</label>
+                <label style="width: 30%">
+                    <input  [(ngModel)]="repair.comments" type="text" class="form-control" id="repairMan" name="repairMan">
+                </label>
+            </div>
+            <br>
+            <div style="margin-top: 5px;">
+                <label style="width: 8%"></label>
+                <label class="control-label">使用材料:</label>
+                <label style="width: 30%">
+                    <input  [(ngModel)]="repair.material" type="text" class="form-control" id="material" name="material">
+                </label>
+                <label style="width: 9%"></label>
+                <label class="control-label">维修时间:</label>
+                <label style="width: 30%">
+                    <input  [(ngModel)]="repair.update_time" type="text" class="form-control" id="updateTime" name="updateTime">
+                </label>
+            </div>
+            <br>
+            <div style="margin-top: 5px;">
+                <label style="width: 8%"></label>
+                <label class="control-label">维修结果:</label>
+                <label style="width: 76%">
+                    <input  [(ngModel)]="repair.result" type="text" class="form-control" id="result" name="result">
+                </label>
+            </div>
+        </div>
+        <!--<div class="form-group" style="margin-top: 50px;">-->
+            <!--<label style="width: 8%"></label>-->
+            <!--<label class="control-label">报修内容:</label>-->
+            <!--<div class="col-sm-8" style="margin-left: 12%;">-->
+                <!--<textarea rows="6" cols="90" [(ngModel)]="newUser.email" name="content" disabled></textarea>-->
+            <!--</div>-->
+        <!--</div>-->
+
+    </form>
+    <div class="modal-footer">
+        <essence-ng2-print
+                [mode]="'popup'"
+                [popTitle]="'报修单打印'"
+                [btnText]="'打印报修单'"
+                [btnClass]="{'btn': true, 'btn-info': true}"
+                [printHTML]="print_div"
+                [printStyle]="printStyle"
+                [printCSS]="printCSS"
+                [showBtn]="printBtnBoolean"
+                (click)="beforePrint()"
+                (printComplete)="printComplete()">
+        </essence-ng2-print>
+    </div>
+
+</div>

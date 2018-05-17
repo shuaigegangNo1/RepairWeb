@@ -7,6 +7,7 @@ import {AssertRepairDetailComponent} from "./assertRepair.detail.component";
 import {RepairRecordListComponent} from "./repairRecord.list.component";
 import {RepairRecordDetailComponent} from "./repairRecord.detail.component";
 import {EvaluateDetailComponent} from "./evaluate.detail.component";
+import {PrintModalComponent} from "./printer.component";
 
 
 const routes: Routes = [
@@ -92,6 +93,13 @@ const routes: Routes = [
     component: EvaluateDetailComponent,
     data: {
       title: 'CreateEvaluate'
+    }
+  },
+  {
+    path: 'print',
+    component: PrintModalComponent,
+    data: {
+      title: 'Print'
     }
   },
 ];

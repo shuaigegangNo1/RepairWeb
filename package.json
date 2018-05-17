@@ -33,6 +33,7 @@
     "chart.js": "2.7.0",
     "core-js": "2.5.1",
     "d3": "^4.9.1",
+    "essence-ng2-print": "^1.1.0",
     "font-awesome": "^4.7.0",
     "moment": "2.19.1",
     "ngx-bootstrap": "1.9.3",
