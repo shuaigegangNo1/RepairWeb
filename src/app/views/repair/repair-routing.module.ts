@@ -96,7 +96,7 @@ const routes: Routes = [
     }
   },
   {
-    path: 'print',
+    path: 'print/:id',
     component: PrintModalComponent,
     data: {
       title: 'Print'

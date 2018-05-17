@@ -6,13 +6,12 @@
                 <label style="width: 9%"></label>
                 <label class="control-label">报修人:</label>
                 <label style="width: 30%">
-                    <p class="form-control">{{newUser.name}}</p>
-                    <!--<input  value="{{newUser.name}}" type="text" style="text-decoration: underline" id="createUserName" name="createUserName" disabled>-->
+                    <p class="form-control">{{assertRepair.name}}</p>
                 </label>
                 <label style="width: 10%"></label>
                 <label class="control-label">联系方式:</label>
                 <label style="width: 30%">
-                    <input  [(ngModel)]="newUser.email" type="text" class="form-control" id="createUserEmail" name="createUserEmail">
+                    <p class="form-control">{{assertRepair.telephone}}</p>
                 </label>
             </div>
 
@@ -21,7 +20,7 @@
                 <label style="width: 7.5%"></label>
                 <label class="control-label">保修内容:</label>
                 <label style="width: 76%">
-                    <input  [(ngModel)]="repair.content" type="text" class="form-control" id="Content" name="Content">
+                    <p class="form-control">{{assertRepair.content}}</p>
                 </label>
             </div>
             <br>
@@ -29,12 +28,12 @@
             <label style="width: 10.5%"></label>
             <label class="control-label">区域:</label>
             <label style="width: 30%">
-                <input  [(ngModel)]="repair.area" type="text" class="form-control" id="Area" name="Area">
+                <p class="form-control">{{assertRepair.area|area}}</p>
             </label>
             <label style="width: 10%"></label>
             <label class="control-label">详细地址:</label>
             <label style="width: 30%">
-                <input  [(ngModel)]="repair.address" type="text" class="form-control" id="Address" name="Address">
+                <p class="form-control">{{assertRepair.address}}</p>
             </label>
             </div>
             <br>
@@ -42,7 +41,7 @@
                 <label style="width: 8%"></label>
                 <label class="control-label">报修时间:</label>
                 <label style="width: 30%">
-                    <input  [(ngModel)]="repair.create_time" type="text" class="form-control" id="createTime" name="createTime">
+                    <p class="form-control">{{assertRepair.create_time| date:'yyyy-MM-dd HH:mm:ss'}}</p>
                 </label>
                 <label style="width: 10%"></label>
                 <label class="control-label">维修人:</label>
