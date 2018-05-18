@@ -21,7 +21,7 @@ export class RepairDetailComponent {
         this.repair.repair_status = 0;
         this.repairService.create(this.loginUser.name, this.repair).subscribe(
             res => {
-                this.router.navigate(['/message'], {queryParams: {'message': '报修成功!', 'url': '/user'}});
+                this.router.navigate(['/message'], {queryParams: {'message': '报修成功!', 'url': '/repair'}});
             }
         )
             // if(!this.equipment.id){

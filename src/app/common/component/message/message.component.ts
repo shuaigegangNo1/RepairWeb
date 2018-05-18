@@ -12,7 +12,7 @@ export class AppMessageComponent {
     @Input() message: String;
     @Input() returnUrl: String;
     constructor(protected router: Router) { }
-    jump(url:string) {
+    jump(url: string) {
         this.router.navigate([url]);
     }
 }
