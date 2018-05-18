@@ -67,7 +67,7 @@
                 <label style="width: 8%"></label>
                 <label class="control-label">维修结果:</label>
                 <label style="width: 76%">
-                    <input  [(ngModel)]="repair.result" type="text" class="form-control" id="result" name="result">
+                    <input  [(ngModel)]="repair.result" type="text" class="form-control"  id="result" name="result">
                 </label>
             </div>
         </div>
@@ -81,18 +81,19 @@
 
     </form>
     <div class="modal-footer">
-        <essence-ng2-print
-                [mode]="'popup'"
-                [popTitle]="'报修单打印'"
-                [btnText]="'打印报修单'"
-                [btnClass]="{'btn': true, 'btn-info': true}"
-                [printHTML]="print_div"
-                [printStyle]="printStyle"
-                [printCSS]="printCSS"
-                [showBtn]="printBtnBoolean"
-                (click)="beforePrint()"
-                (printComplete)="printComplete()">
-        </essence-ng2-print>
+            <label class="control-label">签收人:</label>
+                <u>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</u>
+    <essence-ng2-print
+            [mode]="'popup'"
+            [popTitle]="'报修单打印'"
+            [btnText]="'打印报修单'"
+            [btnClass]="{'btn': true, 'btn-info': true}"
+            [printHTML]="print_div"
+            [printStyle]="printStyle"
+            [printCSS]="printCSS"
+            [showBtn]="printBtnBoolean"
+            (click)="beforePrint()"
+            (printComplete)="printComplete()">
+    </essence-ng2-print>
     </div>
-
 </div>
