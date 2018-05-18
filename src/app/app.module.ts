@@ -68,10 +68,8 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {AppLoginComponent} from './login/login.component';
 import {LoginComponent} from './views/pages/login.component';
 import {LoginService} from './common/service/loginService';
-import {LocationService} from './common/service/locationService';
 import {HttpModule} from '@angular/http';
 import {UserService} from './common/service/userService';
-import {EquipmentService} from './common/service/equipmentService';
 import {FileService} from './common/service/fileService';
 import {SharedModules} from './common/shareModule';
 import {RepairService} from "./common/service/repairService";
@@ -100,9 +98,7 @@ import {EvaluateService} from "./common/service/evaluateService";
     MessageService,
     NotificationsService,
     LoginService,
-    LocationService,
     UserService,
-    EquipmentService,
     FileService,
     RepairService,
     RepairRecordService,

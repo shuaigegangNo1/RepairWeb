@@ -26,14 +26,6 @@ export const routes: Routes = [
         loadChildren: './views/user/user.module#UserModule'
       },
       {
-        path: 'location',
-        loadChildren: './views/locations/locations.module#LocationModule'
-      },
-      {
-        path: 'equipment',
-        loadChildren: './views/equipment/equipment.module#EquipmentModule'
-      },
-      {
         path: 'message',
         loadChildren: './views/message/message.module#MessageModule'
       },
