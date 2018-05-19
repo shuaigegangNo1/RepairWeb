@@ -1,7 +1,7 @@
 /**
  * Created by huangxuewen on 2018/4/21.
  */
-export const DOMAIN_SERVER_URL = "http://localhost:8080";
+export const DOMAIN_SERVER_URL = "http://localhost:8090";
 export const FILE_DOWNLOAD_URL = 'http://localhost:8080/assets';
 
 export const USER_URL = "/users";
