@@ -7,7 +7,6 @@ import {CommonModule} from '@angular/common';
 import {ModalModule, PaginationModule, TabsModule} from 'ngx-bootstrap';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {UserDetailComponent} from './user.detail.component';
-import {OrgChartComponent} from './orgChart.component';
 import {SharedModules} from '../../common/shareModule';
 
 @NgModule({
@@ -22,6 +21,6 @@ import {SharedModules} from '../../common/shareModule';
     // TabsModule.forRoot(),
     SharedModules
   ],
-  declarations: [ DashboardComponent, UserDetailComponent, OrgChartComponent ]
+  declarations: [ DashboardComponent, UserDetailComponent ]
 })
 export class UserModule { }

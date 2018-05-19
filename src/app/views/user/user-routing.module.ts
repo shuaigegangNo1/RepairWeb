@@ -4,7 +4,6 @@ import { Routes,
 
 import { DashboardComponent } from './user.component';
 import {UserDetailComponent} from './user.detail.component';
-import {OrgChartComponent} from './orgChart.component';
 
 const routes: Routes = [
   {
@@ -19,13 +18,6 @@ const routes: Routes = [
     component: UserDetailComponent,
     data: {
       title: 'UserDetail'
-    }
-  },
-  {
-    path: 'org',
-    component: OrgChartComponent,
-    data: {
-      title: 'Org'
     }
   }
 ];

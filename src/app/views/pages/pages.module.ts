@@ -10,7 +10,7 @@ import { PagesRoutingModule } from './pages-routing.module';
 @NgModule({
     imports: [ PagesRoutingModule ],
     declarations: [
-        LoginComponent
+        // LoginComponent
     ]
 })
 export class PagesModule { }

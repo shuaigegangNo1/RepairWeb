@@ -9,8 +9,8 @@ import {Router} from '@angular/router';
     templateUrl: 'message.component.html'
 })
 export class AppMessageComponent {
-    @Input() message: String;
-    @Input() returnUrl: String;
+    @Input() message: string;
+    @Input() returnUrl: string;
     constructor(protected router: Router) { }
     jump(url: string) {
         this.router.navigate([url]);
