@@ -102,8 +102,7 @@ export class LoginComponent extends BaseReactiveFormComponent<User> {
         // );
     }
     getUser(name: string) {
-        this.userService.getUserbyName(name).subscribe(res => {
-                // this.removeLocalStorage();
+        this.userService.getUserbySno(name).subscribe(res => {
                 localStorage.setItem('loginUser', JSON.stringify(res.result));
                 localStorage.setItem('role', JSON.stringify(res.result.role));
             }
