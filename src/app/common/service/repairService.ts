@@ -40,4 +40,8 @@ export class RepairService extends BaseService {
         return this.http.get(this.getServiceUrl() + '/repair/detail4Assert?repairId=' + repairId ,
             this.getJsonHeaderWithJWT()).map(res => res.json()).catch(this.handleError)
     }
+    getRepairCount(repairStatus: number) {
+        return this.http.get(this.getServiceUrl() + '/repair/countByRepairStatus?repairStatus=' + repairStatus ,
+            this.getJsonHeaderWithJWT()).map(res => res.json()).catch(this.handleError)
+    }
 }
