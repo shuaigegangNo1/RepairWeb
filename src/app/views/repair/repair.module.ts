@@ -16,6 +16,7 @@ import {EvaluateDetailComponent} from "./evaluate.detail.component";
 import {PrintModalComponent} from "./printer.component";
 import {EssenceNg2PrintModule} from "essence-ng2-print";
 import {PositiveNumberDirective} from "../../common/component/input/positive-number.directive";
+import {MobileValidator} from "../../common/component/input/mobile.validator";
 @NgModule({
   imports: [
     RepairRoutingModule,
@@ -32,6 +33,6 @@ import {PositiveNumberDirective} from "../../common/component/input/positive-num
       AssertRepairListComponent, AssertRepairDetailComponent,
       RepairRecordListComponent, RepairRecordDetailComponent,
       EvaluateDetailComponent, PrintModalComponent,
-      PositiveNumberDirective]
+      PositiveNumberDirective, MobileValidator]
 })
 export class RepairModule { }
