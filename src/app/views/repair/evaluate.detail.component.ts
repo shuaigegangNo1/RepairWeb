@@ -26,6 +26,14 @@ export class EvaluateDetailComponent {
         });
     }
     createEvaluate() {
+        if (!this.evaluate.rate) {
+            this.messageService.pushMessage({title: 'Error', content: '请选择评价等级', type: 'error'});
+            return;
+        }
+        if (!this.evaluate.workload) {
+            this.messageService.pushMessage({title: 'Error', content: '请输入工作量', type: 'error'});
+            return;
+        }
         this.evaluateService.create(this.repair.id, this.evaluate).subscribe(
             res => {
                 this.updateRepairStatus();

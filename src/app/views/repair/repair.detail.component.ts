@@ -18,22 +18,28 @@ export class RepairDetailComponent {
         this.loginUser = JSON.parse(localStorage.getItem('loginUser'));
     }
     createRepair() {
+        if (!this.repair.content) {
+            this.messageService.pushMessage({title: 'Error', content: '请输入报修内容', type: 'error'});
+            return;
+        }
+        if (!this.repair.area) {
+            this.messageService.pushMessage({title: 'Error', content: '请选择区域', type: 'error'});
+            return;
+        }
+        if (!this.repair.address) {
+            this.messageService.pushMessage({title: 'Error', content: '请输入地址', type: 'error'});
+            return;
+        }
+        if (!this.repair.telephone) {
+            this.messageService.pushMessage({title: 'Error', content: '请输入联系方式', type: 'error'});
+            return;
+        }
         this.repair.repair_status = 0;
         this.repairService.create(this.loginUser.name, this.repair).subscribe(
             res => {
                 this.router.navigate(['/message'], {queryParams: {'message': '报修成功!', 'url': '/repair'}});
             }
         )
-            // if(!this.equipment.id){
-            //     this.equipmentService.create(this.equipment).subscribe(
-            //         res => {
-            //             this.messageService.pushMessage({title: 'Success', content: '设备创建成功', type: 'success'});
-            //             this.router.navigate(['/equipment/children', this.equipment.location_id]);
-            //         })
-            // }else{
-            //     this.update();
-            // }
-
     }
     setContent(content: any) {
         this.repair.comments = content;

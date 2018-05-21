@@ -22,8 +22,13 @@
                                 <label class="col-sm-2 control-label">区域</label>
                                 <div class="col-sm-8">
                                     <select [(ngModel)]="repair.area" name="area" class="form-control" disabled>
-                                        <option value="0">宿舍区</option>
+                                        <option value="0">公寓区</option>
                                         <option value="1">教学区</option>
+                                        <option value="2">办公场所(室内公共设施)</option>
+                                        <option value="3">室外公共设施</option>
+                                        <option value="4">绿化卫生</option>
+                                        <option value="5">食堂</option>
+                                        <option value="6">其他</option>
                                     </select>
                                 </div>
                             </div>
@@ -42,7 +47,7 @@
                                 </div>
                             </div>
                             <div class="form-group" style="margin-top: 50px;">
-                                <label class="col-sm-2 control-label">审批意见</label>
+                                <label class="col-sm-2 control-label">审批意见<span style="color:red; font-size: 20px;">*</span></label>
                                 <div class="col-sm-8">
                                     <select [(ngModel)]="status" name="status" class="form-control">
                                         <!--<option value="0">未受理</option>-->
@@ -53,7 +58,7 @@
                                 </div>
                             </div>
                             <div class="form-group" style="margin-top: 50px;" *ngIf="status ==2">
-                                <label class="col-sm-2 control-label">检修人</label>
+                                <label class="col-sm-2 control-label">检修人<span style="color:red; font-size: 20px;">*</span></label>
                                 <div class="col-sm-8">
                                     <select  [(ngModel)]="repairmanId" name="repairman" class="form-control">
                                         <option *ngFor="let repairman of repairmanList" value="{{repairman.id}}">{{repairman.name}}</option>

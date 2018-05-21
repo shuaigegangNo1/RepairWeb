@@ -23,7 +23,7 @@
                                 </div>
                             </div>
                             <div class="form-group" style="margin-top: 50px;">
-                                <label class="col-sm-2 control-label">评分等级</label>
+                                <label class="col-sm-2 control-label">评分等级<span style="color:red; font-size: 20px;">*</span></label>
                                 <div class="col-sm-8">
                                     <select [(ngModel)]="evaluate.rate" name="rate" class="form-control">
                                         <option value="20">一星</option>
@@ -35,9 +35,9 @@
                                 </div>
                             </div>
                             <div class="form-group" style="margin-top: 50px;">
-                                <label class="col-sm-2 control-label">工作量（小时:H）</label>
+                                <label class="col-sm-2 control-label">工作量（小时:H）<span style="color:red; font-size: 20px;">*</span></label>
                                 <div class="col-sm-8">
-                                    <input type="text" [(ngModel)]="evaluate.workload" class="form-control" id="inputWorkload"
+                                    <input type="text" [(ngModel)]="evaluate.workload" class="form-control" id="inputWorkload" appPositiveNumber
                                     name="inputWorkload" placeholder="请输入工作量">
                                 </div>
                             </div>

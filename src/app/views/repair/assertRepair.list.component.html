@@ -119,12 +119,12 @@
             <label class="control-label">区域</label>
             <label style="width: 100%">
               <input *ngIf="!disable" [(ngModel)]="f_Repair.area" type="text" class="form-control" id="updateEquipmentName" name="updateEquipmentName">
-              <input *ngIf="disable" value="{{f_Repair.area}}" type="text" class="form-control" id="EquipmentName" name="EquipmentName" disabled>
+              <input *ngIf="disable" value="{{f_Repair.area | area}}" type="text" class="form-control" id="EquipmentName" name="EquipmentName" disabled>
             </label>
             <label class="control-label">状态</label>
             <label style="width: 100%">
               <input *ngIf="!disable" [(ngModel)]="f_Repair.repair_status" type="text" class="form-control" id="updateEquipmentBatchNo" name="updateEquipmentBatchNo">
-              <input *ngIf="disable" value="{{f_Repair.repair_status}}" type="text" class="form-control" id="EquipmentBatchNo" name="EquipmentBatchNo" disabled>
+              <input *ngIf="disable" value="{{f_Repair.repair_status | repairStatus}}" type="text" class="form-control" id="EquipmentBatchNo" name="EquipmentBatchNo" disabled>
             </label>
             <!--<label class="control-label">购买日期</label>-->
             <!--<label style="width: 100%">-->

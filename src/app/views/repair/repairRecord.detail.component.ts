@@ -27,11 +27,18 @@ export class RepairRecordDetailComponent {
         }
     }
     createRepairRecord() {
-
         if (!this.repairRecord.repair_progress) {
-            this.messageService.pushMessage({title: '字段为空', content: '维修进展不能为空', type: 'error'});
+            this.messageService.pushMessage({title: '字段为空', content: '请输入维修进展', type: 'error'});
         } else {
             if (+this.status === 1) {
+                if (!this.repair.material) {
+                    this.messageService.pushMessage({title: '字段为空', content: '请输入使用材料', type: 'error'});
+                    return;
+                }
+                if (!this.repair.result) {
+                    this.messageService.pushMessage({title: '字段为空', content: '请输入维修结果', type: 'error'});
+                    return;
+                }
                 this.repair.repair_status = 3; // evaluate status
                 this.repairService.update(this.repair).subscribe(res => console.log('>>>>res>>>>' + JSON.stringify(res)));
             }
