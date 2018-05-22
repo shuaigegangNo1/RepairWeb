@@ -13,6 +13,7 @@ import {RepairService} from "../../common/service/repairService";
 })
 export class RepairListComponent extends CustomPaginationComponent implements OnInit, OnChanges {
   repairList: Array<Repair>;
+  // tmpRepairList: Array<Repair>;
   page  = 0;
   repairCriteria: RepairCriteria = new RepairCriteria();
   f_Repair: Repair = new Repair();
@@ -34,7 +35,9 @@ export class RepairListComponent extends CustomPaginationComponent implements On
       this.showCreate = true;
     }
     this.loginUser = JSON.parse(localStorage.getItem('loginUser'));
-    this.repairCriteria.userName = this.loginUser.name;
+    if (this.loginUser.name) {
+      this.repairCriteria.userName = this.loginUser.name;
+    }
     this.getRepairList()
   }
 
@@ -71,7 +74,6 @@ export class RepairListComponent extends CustomPaginationComponent implements On
   }
 
   pageChanged(event: any) {
-    // this.userCriteria.skip = (event.page - 1) * this.userCriteria.pagesize;
     this.repairCriteria.skip = event.page - 1;
     this.searchStream.next(this.repairCriteria);
   }
@@ -80,7 +82,7 @@ export class RepairListComponent extends CustomPaginationComponent implements On
   }
   submitRepair() {
     this.repairService.update(this.f_Repair).subscribe(res => {
-      this.messageService.pushMessage({title: 'Success', content: '报修修改成功', type: 'success'});
+      this.messageService.pushMessage({title: '修改', content: '报修修改成功', type: 'success'});
       this.searchStream.next(this.repairCriteria);
       this.updateModal.hide();
     })
@@ -102,11 +104,17 @@ export class RepairListComponent extends CustomPaginationComponent implements On
       this.f_Repair.isEvaluate = 'y';
       this.repairService.update(this.f_Repair).subscribe(res => {
         console.log(">>>res>>", res.result);
-        this.messageService.pushMessage({title: 'Success', content: '评价成功', type: 'success'});
+        // this.repairList.map(repair => {
+        //   if ( repair.id !== this.f_Repair.id) {
+        //     this.tmpRepairList.concat(repair)
+        //   }
+        // });
+        // this.repairList = this.tmpRepairList;
+        this.messageService.pushMessage({title: '评价', content: '评价成功', type: 'success'});
         this.evaluateModal.hide();
       })
     }else {
-      this.messageService.pushMessage({title: 'Error', content: '请评价', type: 'error'});
+      this.messageService.pushMessage({title: '评价', content: '请评价', type: 'error'});
     }
   }
   checkRepairRecord(repair: Repair) {
