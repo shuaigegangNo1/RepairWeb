@@ -108,7 +108,9 @@ export class RepairListComponent extends CustomPaginationComponent implements On
     }else {
       this.messageService.pushMessage({title: 'Error', content: '请评价', type: 'error'});
     }
-
+  }
+  checkRepairRecord(repair: Repair) {
+    this.router.navigate(['/repair/repairRecordList', repair.id]);
   }
   // getValue(value: any) {
   //   this.f_equipment.buy_date = value;
