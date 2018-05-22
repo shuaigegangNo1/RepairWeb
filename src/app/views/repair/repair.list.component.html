@@ -48,7 +48,7 @@
                       <a class="dropdown-item" href="javascript:void(0);"
                          (click)="update(repair)">修改</a>
                     </li>
-                    <li role="menuitem" *ngIf="repair.repair_status!==0 || repair.repair_status!==1">
+                    <li role="menuitem" *ngIf="repair.repair_status!==0 && repair.repair_status!==1">
                       <a class="dropdown-item" href="javascript:void(0);"
                          (click)="checkRepairRecord(repair)">维修跟踪</a>
                     </li>
