@@ -4,10 +4,12 @@ import {BaseCriteria} from './BaseCriteria';
 export class User extends BaseModule {
   username?: string;
   password?: string;
+  sno?: string;
   name?: string;
   email?: string;
   role?: number;
   type: Type;
+  comments?: string;
 }
 
 export enum Type {

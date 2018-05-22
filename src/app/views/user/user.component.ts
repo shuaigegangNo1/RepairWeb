@@ -41,7 +41,7 @@ export class DashboardComponent extends CustomPaginationComponent implements OnI
 
   getUserList() {
     // Inital
-    this.userCriteria.email = '';
+    this.userCriteria.name = '';
     this.userService.getUserList(this.userCriteria).subscribe(res => {
       this.usersList = res.result.content;
       this.totalItems[0] = res.result.totalElements;

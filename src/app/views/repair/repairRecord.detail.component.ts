@@ -44,7 +44,7 @@ export class RepairRecordDetailComponent {
             }
             this.repairRecordService.create(this.repair.id, this.repairRecord).subscribe(
                 res => {
-                    this.router.navigate(['/message'], {queryParams: {'message': '创建成功!', 'url': '/user'}});
+                    this.router.navigate(['/message'], {queryParams: {'message': '维修记录创建成功!', 'url': '/repair/unHandledRepairList/2'}});
                 }
             )
         }

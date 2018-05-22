@@ -46,7 +46,8 @@
                 <label style="width: 10%"></label>
                 <label class="control-label">维修人:</label>
                 <label style="width: 30%">
-                    <input  [(ngModel)]="repair.comments" type="text" class="form-control" id="repairMan" name="repairMan">
+                    <p class="form-control">{{assertRepair.repairMan}}</p>
+                    <!--<input  [(ngModel)]="repair.comments" type="text" class="form-control" id="repairMan" name="repairMan">-->
                 </label>
             </div>
             <br>
@@ -81,7 +82,7 @@
 
     </form>
     <div class="modal-footer">
-            <label class="control-label">签收人:</label>
+            <label class="control-label">签字:</label>
                 <u>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</u>
     <essence-ng2-print
             [mode]="'popup'"

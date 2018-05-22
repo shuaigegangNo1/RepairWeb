@@ -61,7 +61,7 @@
                                 <label class="col-sm-2 control-label">检修人<span style="color:red; font-size: 20px;">*</span></label>
                                 <div class="col-sm-8">
                                     <select  [(ngModel)]="repairmanId" name="repairman" class="form-control">
-                                        <option *ngFor="let repairman of repairmanList" value="{{repairman.id}}">{{repairman.name}}</option>
+                                        <option *ngFor="let repairman of repairmanList" value="{{repairman.id}}">{{repairman.name}} --- 维修范围:  {{repairman.comments}}</option>
                                     </select>
                                 </div>
                             </div>

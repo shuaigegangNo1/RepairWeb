@@ -12,7 +12,9 @@ export class AppHeaderComponent {
   name: number;
   constructor(private router: Router, private repairService: RepairService) {
     this.loginUser = JSON.parse(localStorage.getItem('loginUser'));
-    this.name = this.loginUser.name;
+    if (this.loginUser.name) {
+      this.name = this.loginUser.name;
+    }
     this.getRepairCount();
   }
   logout() {

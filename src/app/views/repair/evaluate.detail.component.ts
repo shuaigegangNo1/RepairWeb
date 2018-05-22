@@ -22,7 +22,11 @@ export class EvaluateDetailComponent {
                 private route: ActivatedRoute) {
         this.route.queryParams.subscribe(params => {
             this.repair.id = params['id'];
-            this.rate = params['rate'];
+            if (params['rate'] > 0) {
+                this.rate = params['rate'];
+            }else {
+                this.rate = 0;
+            }
         });
     }
     createEvaluate() {
@@ -37,7 +41,7 @@ export class EvaluateDetailComponent {
         this.evaluateService.create(this.repair.id, this.evaluate).subscribe(
             res => {
                 this.updateRepairStatus();
-                this.router.navigate(['/message'], {queryParams: {'message': '评估成功!', 'url': '/user'}});
+                this.router.navigate(['/message'], {queryParams: {'message': '评估成功!', 'url': '/repair/evaluateRepairList/3'}});
             }
         )
     }

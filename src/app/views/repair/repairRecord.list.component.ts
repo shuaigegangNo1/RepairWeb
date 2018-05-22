@@ -13,9 +13,10 @@ import {RepairRecordCriteria} from "../../common/entity/RepairRecord";
     styleUrls: ['./repairRecord.list.component.css']
 })
 export class RepairRecordListComponent {
-    customClass: string = 'accordionClass';
-    isFirstOpen: boolean = true;
+    customClass = 'accordionClass';
+    isFirstOpen = true;
     repairRecordList: any[];
+    show: boolean;
     repairRecordCriteria: RepairRecordCriteria = new RepairRecordCriteria();
     constructor(protected router: Router, protected messageService: MessageService,
                 private repairRecordService: RepairRecordService, private route: ActivatedRoute) {
@@ -29,7 +30,9 @@ export class RepairRecordListComponent {
         this.repairRecordService.getRepairRecordList(this.repairRecordCriteria)
             .subscribe(res => {
                 this.repairRecordList = res.result.content;
-                console.log("res>>>"+JSON.stringify(this.repairRecordList))
+                if (this.repairRecordList.length === 0) {
+                    this.show = true;
+                }
             } )
     }
 }

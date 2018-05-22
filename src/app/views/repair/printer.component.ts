@@ -4,6 +4,7 @@ import {Repair} from "../../common/entity/Repair";
 import {AssertRepair} from "../../common/entity/AssertRepair";
 import {RepairService} from "../../common/service/repairService";
 import {ActivatedRoute} from "@angular/router";
+import {UserService} from "../../common/service/userService";
 @Component({
     templateUrl: 'printer.component.html'
 })
@@ -13,7 +14,9 @@ export class PrintModalComponent  {
     printBtnBoolean = true;
     repair: Repair = new Repair();
     assertRepair: AssertRepair = new AssertRepair();
-    constructor(private repairService: RepairService, private route: ActivatedRoute) {
+    repairmanList: Array<User>;
+    constructor(private repairService: RepairService, private userService: UserService,
+                private route: ActivatedRoute) {
         if (this.route.snapshot.params['id']) {
             this.assertRepair.id = this.route.snapshot.params['id'];
         }

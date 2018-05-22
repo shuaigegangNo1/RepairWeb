@@ -14,13 +14,13 @@
                 <!--<label style="margin-left: 1.25rem" class="btn btn-success" for="createUser" title="createUser">-->
                 <button class="btn-small btn-primary"  type="button" (click)="create()">创建新用户</button>
                 <input class="search form-control" placeholder="搜索信息" #term (ngModelChange)="searchUserName()"
-                [(ngModel)]="userCriteria.email" name="userInfo" style="margin-left: 1.25rem;">
+                [(ngModel)]="userCriteria.name" name="userInfo" style="margin-left: 1.25rem;">
               </div>
             </form>
             <table class="table table-hover table-striped">
               <thead>
               <tr>
-                <th width="25%">用户ID</th>
+                <th width="25%">账号</th>
                 <th>用户名</th>
                 <th>角色</th>
                 <!--<th>员工代码</th>-->
@@ -30,7 +30,7 @@
               </thead>
               <tbody>
               <tr *ngFor="let user of usersList">
-              <td>{{user?.id}}</td>
+              <td>{{user?.sno}}</td>
               <td>{{user?.name}}</td>
               <td>{{user?.role|role}}</td>
               <!--<td>{{employee?.code}}</td>-->

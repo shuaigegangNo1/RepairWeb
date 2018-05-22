@@ -8,4 +8,5 @@ export class AssertRepair extends BaseModule {
     area?: number;
     address?: string;
     telephone?: string;
+    repairMan?: string;
 }

@@ -61,11 +61,19 @@ export class AssertRepairDetailComponent {
             this.messageService.pushMessage({title: 'Error', content: '请选择检修人', type: 'error'});
             return;
         }
-        this.repair.repair_status = this.status;
-        this.repairService.update(this.repair).subscribe(res => console.log('>>>>update repair_status>>>>' + JSON.stringify(res)));
+        this.updateRepairStatusAndRepairMan();
+    }
+    addRepairMan() {
         this.repairService.updateRepairman(this.repair.id, this.repairmanId).subscribe(res =>
             console.log('>>>>update repairman>>>>' + JSON.stringify(res)));
-        this.router.navigate(['/message'], {queryParams: {'message': '审批完成!', 'url': '/repair/assertRepairList/0'}});
+    }
+    updateRepairStatusAndRepairMan() {
+        this.repair.repair_status = this.status;
+        this.repairService.update(this.repair).subscribe(res => {
+            console.log('>>>>update repair_status>>>>' + JSON.stringify(res));
+            this.addRepairMan();
+            this.router.navigate(['/message'], {queryParams: {'message': '审批完成!', 'url': '/repair/assertRepairList/0'}});
+        })
     }
     getRepairManList() {
         const role = 2;
