@@ -33,7 +33,7 @@
               <td>{{repair?.content}}</td>
                 <td>{{repair?.area | area}}</td>
                 <td>{{repair?.address}}</td>
-                <td>{{repair.isEvaluate === 'y'? '已完成': repair?.repair_status | repairStatus}}</td>
+                <td [ngStyle]="{'color':setColor(repair.repair_status)}">{{repair.isEvaluate === 'y'? '已完成': repair?.repair_status | repairStatus}}</td>
               <td>
                 <div class="btn-group-xs" dropdown container="body">
                   <button dropdownToggle type="button" class="btn btn-primary dropdown-toggle">

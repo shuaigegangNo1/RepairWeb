@@ -112,6 +112,19 @@ export class RepairListComponent extends CustomPaginationComponent implements On
   checkRepairRecord(repair: Repair) {
     this.router.navigate(['/repair/repairRecordList', repair.id]);
   }
+  setColor(status: any): string {
+    let color = '';
+    if (status === 0) {
+      color = 'red'
+    }else if (status === 2) {
+      color = 'green'
+    }else if (status === 3) {
+      color = 'blue'
+    }else {
+      color = 'black'
+    }
+    return color;
+  }
   // getValue(value: any) {
   //   this.f_equipment.buy_date = value;
   // }
