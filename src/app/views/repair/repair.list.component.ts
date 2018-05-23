@@ -17,6 +17,7 @@ export class RepairListComponent extends CustomPaginationComponent implements On
   page  = 0;
   repairCriteria: RepairCriteria = new RepairCriteria();
   f_Repair: Repair = new Repair();
+  f_Repair1: Repair = new Repair();
   searchStream = new Subject<RepairCriteria>();
   disable: boolean;
   loginUser: any;
@@ -81,9 +82,11 @@ export class RepairListComponent extends CustomPaginationComponent implements On
     this.router.navigate(['/repair/create']);
   }
   submitRepair() {
-    this.repairService.update(this.f_Repair).subscribe(res => {
+    this.f_Repair1.id = this.f_Repair.id;
+    this.repairService.update(this.f_Repair1).subscribe(res => {
       this.messageService.pushMessage({title: '修改', content: '报修修改成功', type: 'success'});
       this.searchStream.next(this.repairCriteria);
+      this.f_Repair = this.f_Repair1
       this.updateModal.hide();
     })
   }
@@ -149,4 +152,21 @@ export class RepairListComponent extends CustomPaginationComponent implements On
   // upload(equipment: Equipment) {
   //   this.router.navigate(['/equipment/upload', equipment.id]);
   // }
+  close() {
+    this.updateModal.hide();
+  }
+  getValue(value: any, flag: number) {
+    if (flag === 1) {
+      this.f_Repair1.content = value.target.value;
+    }
+    if (flag === 2) {
+      this.f_Repair1.area = value.target.value;
+    }
+    if (flag === 3) {
+      this.f_Repair1.address = value.target.value;
+    }
+    if (flag === 4) {
+      this.f_Repair1.telephone = value.target.value;
+    }
+  }
 }

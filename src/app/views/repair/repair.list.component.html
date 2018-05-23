@@ -19,7 +19,7 @@
             <table class="table table-hover table-striped">
               <thead>
               <tr>
-                <th width="25%">ID</th>
+                <th width="25%">报修单号</th>
                 <th>报修内容</th>
                 <th>报修区域</th>
                 <th>报修地址</th>
@@ -86,7 +86,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <h4 class="modal-title pull-left">{{disable?'报修详情':'修改报修'}}</h4>
-        <button type="button" class="close pull-right" (click)="updateModal.hide()" aria-label="Close">
+        <button type="button" class="close pull-right" (click)="close()" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
@@ -95,28 +95,38 @@
           <div class="form-group">
             <label class="control-label">内容</label>
             <label style="width: 100%">
-              <textarea *ngIf="!disable" rows="6" cols="52" [(ngModel)]="f_Repair.content" name="updateContent"></textarea>
+              <textarea *ngIf="!disable" rows="6" cols="52" value="{{f_Repair.content}}" name="updateContent" (change)="getValue($event,1)" ></textarea>
               <textarea *ngIf="disable" rows="6" cols="52" [(ngModel)]="f_Repair.content" name="content" disabled></textarea>
             </label>
             <label class="control-label">区域</label>
             <label style="width: 100%">
-              <select *ngIf="!disable"  [(ngModel)]="f_Repair.area" name="area" class="form-control">
+              <select *ngIf="!disable"  value="{{f_Repair.area}}" name="area" (change)="getValue($event,2)" class="form-control">
                 <option value="0">宿舍区</option>
                 <option value="1">教学区</option>
+                <option value="2">办公场所(室内公共设施)</option>
+                <option value="3">室外公共设施</option>
+                <option value="4">绿化卫生</option>
+                <option value="5">食堂</option>
+                <option value="6">其他</option>
               </select>
               <select  *ngIf="disable" [(ngModel)]="f_Repair.area" name="area1" class="form-control" disabled>
                 <option value="0">宿舍区</option>
                 <option value="1">教学区</option>
+                <option value="2">办公场所(室内公共设施)</option>
+                <option value="3">室外公共设施</option>
+                <option value="4">绿化卫生</option>
+                <option value="5">食堂</option>
+                <option value="6">其他</option>
               </select>
             </label>
             <label class="control-label">报修地址</label>
             <label style="width: 100%">
-              <input *ngIf="!disable" [(ngModel)]="f_Repair.address" type="text" class="form-control"  name="updateAddress">
+              <input *ngIf="!disable" value="{{f_Repair.address}}" (change)="getValue($event,3)" type="text" class="form-control"  name="updateAddress">
               <input *ngIf="disable"  [(ngModel)]="f_Repair.address" type="text" class="form-control"  name="address" disabled>
             </label>
             <label class="control-label">联系方式</label>
             <label style="width: 100%">
-              <input *ngIf="!disable" [(ngModel)]="f_Repair.telephone" type="text" class="form-control"  name="updateTelephone">
+              <input *ngIf="!disable" value="{{f_Repair.telephone}}" (change)="getValue($event,4)" type="text" class="form-control"  name="updateTelephone">
               <input *ngIf="disable"  [(ngModel)]="f_Repair.telephone" type="text" class="form-control"  name="telephone" disabled>
             </label>
             <!--<label class="control-label">备注</label>-->
