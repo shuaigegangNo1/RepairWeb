@@ -36,7 +36,7 @@
               <td>{{repair?.content}}</td>
                 <td>{{repair?.area | area}}</td>
                 <td>{{repair?.address}}</td>
-                <td [ngStyle]="{'color':setColor(repair.repair_status)}">{{repair.isEvaluate === 'y'? '已完成': repair?.repair_status | repairStatus}}</td>
+                <td [ngStyle]="{'color':setColor(repair)}">{{repair.isEvaluate === 'n'&& repair.repair_status===4? '待评价': repair.isEvaluate === 'y'? '已完成':repair?.repair_status | repairStatus}}</td>
               <td>
                 <div class="btn-group-xs" dropdown container="body">
                   <button dropdownToggle type="button" class="btn btn-primary dropdown-toggle">
@@ -55,7 +55,11 @@
                       <a class="dropdown-item" href="javascript:void(0);"
                          (click)="checkRepairRecord(repair)">维修跟踪</a>
                     </li>
-                    <li role="menuitem" *ngIf="repair.repair_status===3 && repair.isEvaluate==='n' ">
+                    <li role="menuitem" *ngIf="repair.repair_status===3">
+                      <a class="dropdown-item" href="javascript:void(0);"
+                         (click)="evaluate(repair)">评价</a>
+                    </li>
+                    <li role="menuitem" *ngIf="repair.repair_status===4 && repair.isEvaluate ==='n'">
                       <a class="dropdown-item" href="javascript:void(0);"
                          (click)="evaluate(repair)">评价</a>
                     </li>

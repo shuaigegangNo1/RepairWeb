@@ -22,6 +22,7 @@ export class AssertRepairListComponent extends CustomPaginationComponent impleme
   disable: boolean;
   showDisable: boolean;
   loginUser: any;
+  showFinishTime: boolean;
   @ViewChild('updateModal') public updateModal: ModalDirective;
   @ViewChild('showModal') public showModal: ModalDirective;
   constructor(protected router: Router, protected messageService: MessageService,
@@ -30,6 +31,11 @@ export class AssertRepairListComponent extends CustomPaginationComponent impleme
     super(router, messageService);
     if (this.route.snapshot.params['id']) {
       this.repairCriteria.repair_status = this.route.snapshot.params['id'];
+      if (+this.repairCriteria.repair_status === 4) {
+        this.showFinishTime = true;
+      }else {
+        this.showFinishTime = false;
+      }
     }
     // this.loginUser = JSON.parse(localStorage.getItem('loginUser'));
     // this.repairCriteria.userName = this.loginUser.name;
@@ -99,7 +105,6 @@ export class AssertRepairListComponent extends CustomPaginationComponent impleme
   evaluateRepair(repair: Repair) {
     this.router.navigate(['/repair/createEvaluate'], {queryParams: {'id': repair.id, 'rate': repair.rate}});
   }
-  // TODO: show  Evaluate Detail in html
   showEvaluate(repair: Repair) {
     this.evaluateService.getEvaluateDetail(repair.id).subscribe(res => {
       this.f_Evaluate = res.result;

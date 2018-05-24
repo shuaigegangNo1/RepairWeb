@@ -3,7 +3,6 @@ import { NgModule } from '@angular/core';
 import {LocationStrategy, HashLocationStrategy, CommonModule} from '@angular/common';
 
 import { AppComponent } from './app.component';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 // Import containers
 import {
   FullLayoutComponent,
@@ -29,7 +28,6 @@ import {
 } from './components';
 
 const APP_COMPONENTS = [
-  AppAsideComponent,
   AppSidebarComponent,
   AppBreadcrumbsComponent,
   AppFooterComponent,
@@ -74,7 +72,6 @@ import {SharedModules} from './common/shareModule';
 import {RepairService} from "./common/service/repairService";
 import {RepairRecordService} from "./common/service/repairRecordService";
 import {EvaluateService} from "./common/service/evaluateService";
-import {AppAsideComponent} from "./components/app-aside/app-aside.component";
 @NgModule({
   imports: [
     BrowserModule,
