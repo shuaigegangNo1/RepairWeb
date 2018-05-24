@@ -17,11 +17,10 @@
       "testTsconfig": "tsconfig.spec.json",
       "prefix": "app",
       "styles": [
+        "../node_modules/font-awesome/css/font-awesome.min.css",
         "../node_modules/bootstrap/dist/css/bootstrap.min.css",
-        "../node_modules/font-awesome/css/font-awesome.css",
         "../node_modules/simple-line-icons/css/simple-line-icons.css",
         "scss/style.scss",
-        "assets/css/orgchart.css",
         "../node_modules/ngx-bootstrap/datepicker/bs-datepicker.css"
       ],
       "scripts": [
