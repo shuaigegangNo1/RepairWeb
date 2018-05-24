@@ -31,7 +31,7 @@ export class AssertRepairListComponent extends CustomPaginationComponent impleme
     if (this.route.snapshot.params['id']) {
       this.repairCriteria.repair_status = this.route.snapshot.params['id'];
     }
-    this.loginUser = JSON.parse(localStorage.getItem('loginUser'));
+    // this.loginUser = JSON.parse(localStorage.getItem('loginUser'));
     // this.repairCriteria.userName = this.loginUser.name;
     this.getRepairList()
   }

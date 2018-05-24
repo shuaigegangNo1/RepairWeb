@@ -12,10 +12,10 @@ import {RepairService} from '../../common/service/repairService';
 })
 export class RepairDetailComponent {
     repair: Repair = new Repair();
-    loginUser: any;
+    sno: any;
     constructor(protected router: Router, private messageService: MessageService,
                 private repairService: RepairService, private route: ActivatedRoute) {
-        this.loginUser = JSON.parse(localStorage.getItem('loginUser'));
+        this.sno = JSON.parse(localStorage.getItem('sno'));
     }
     createRepair() {
         if (!this.repair.content) {
@@ -35,7 +35,7 @@ export class RepairDetailComponent {
             return;
         }
         this.repair.repair_status = 0;
-        this.repairService.create(this.loginUser.name, this.repair).subscribe(
+        this.repairService.create(this.sno, this.repair).subscribe(
             res => {
                 this.router.navigate(['/message'], {queryParams: {'message': '报修成功!', 'url': '/repair'}});
             }

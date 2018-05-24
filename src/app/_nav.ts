@@ -11,12 +11,12 @@ export const navigation = [
       {
         name: '我的报修',
         url: '/repair',
-        icon: 'icon-puzzle'
+        icon: 'icon-list'
       },
       {
         name: '历史报修',
         url: '/repair/history/4',
-        icon: 'icon-puzzle'
+        icon: 'icon-layers'
       }
     ]
   }

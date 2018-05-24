@@ -19,6 +19,7 @@ export class Repair extends BaseModule {
 export class RepairCriteria extends BaseCriteria {
     content = '';
     userName?: string;
+    sno?: string;
     repair_status?: number;
     isFinish = '';
     isEvaluate = '';

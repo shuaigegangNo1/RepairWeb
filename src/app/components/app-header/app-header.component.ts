@@ -8,22 +8,18 @@ import {RepairService} from "../../common/service/repairService";
 })
 export class AppHeaderComponent {
   repairCount: number;
-  loginUser: any;
-  name: number;
+  sno: any;
   constructor(private router: Router, private repairService: RepairService) {
-    this.loginUser = JSON.parse(localStorage.getItem('loginUser'));
-    if (this.loginUser.name) {
-      this.name = this.loginUser.name;
-    }
+    this.sno = JSON.parse(localStorage.getItem('sno'));
     this.getRepairCount();
   }
   logout() {
     localStorage.removeItem('token');
-    localStorage.removeItem('loginUser');
-    localStorage.removeItem('role');
+    localStorage.removeItem('sno');
     this.router.navigate(['']);
   }
   getRepairCount() {
-    this.repairService.getRepairCount(0).subscribe(res => this.repairCount = res.result)
+    const repairStatus = 0;
+    this.repairService.getRepairCount(repairStatus).subscribe(res => this.repairCount = res.result)
   }
 }

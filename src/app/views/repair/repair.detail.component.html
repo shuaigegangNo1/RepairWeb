@@ -11,7 +11,7 @@
                     <div class="table-responsive">
                         <form class="form-horizontal" #userForm="ngForm">
                             <div class="form-group" style="margin-top: 50px;">
-                                <label class="col-sm-2 control-label">报修内容<span style="color:red; font-size: 20px;">*</span></label>
+                                <label class="col-sm-2 control-label">报修内容描述<span style="color:red; font-size: 20px;">*</span></label>
                                 <div class="col-sm-8">
                                     <!--<input type="text" [(ngModel)]="repair.content" class="form-control" id="inputContent"-->
                                            <!--name="inputContent" placeholder="请输入报修内容">-->
@@ -53,13 +53,14 @@
                             <div class="form-group">
                                 <label class="col-sm-2 control-label">备注</label>
                                 <div class="col-sm-10">
-                                    <app-tinymce [initialContent]="repair.comments" [elementId]="'textareaContent'"
-                                                 (onEditorKeyup)="setContent($event)"></app-tinymce>
+                                    <textarea rows="6" cols="90" [(ngModel)]="repair.comments" name="comments"></textarea>
+                                    <!--<app-tinymce [initialContent]="repair.comments" [elementId]="'textareaContent'"-->
+                                                 <!--(onEditorKeyup)="setContent($event)"></app-tinymce>-->
                                 </div>
                             </div>
                         </form>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-primary" (click)="createRepair()">保存</button>
+                            <button type="button" class="btn btn-primary" (click)="createRepair()">提交</button>
                         </div>
                     </div>
                 </div>

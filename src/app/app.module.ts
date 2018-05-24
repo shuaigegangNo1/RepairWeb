@@ -17,7 +17,6 @@ const APP_CONTAINERS = [
 
 // Import components
 import {
-  AppAsideComponent,
   AppBreadcrumbsComponent,
   AppFooterComponent,
   AppHeaderComponent,
@@ -31,10 +30,10 @@ import {
 
 const APP_COMPONENTS = [
   AppAsideComponent,
+  AppSidebarComponent,
   AppBreadcrumbsComponent,
   AppFooterComponent,
   AppHeaderComponent,
-  AppSidebarComponent,
   AppSidebarFooterComponent,
   AppSidebarFormComponent,
   AppSidebarHeaderComponent,
@@ -75,6 +74,7 @@ import {SharedModules} from './common/shareModule';
 import {RepairService} from "./common/service/repairService";
 import {RepairRecordService} from "./common/service/repairRecordService";
 import {EvaluateService} from "./common/service/evaluateService";
+import {AppAsideComponent} from "./components/app-aside/app-aside.component";
 @NgModule({
   imports: [
     BrowserModule,
