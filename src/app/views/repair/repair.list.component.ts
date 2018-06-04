@@ -35,13 +35,10 @@ export class RepairListComponent extends CustomPaginationComponent implements On
       this.repairCriteria.isEvaluate = 'n';
       this.showCreate = true;
     }
-    // this.loginUser = JSON.parse(localStorage.getItem('loginUser'));
+    // this.loginUser = JSON.parse(localStorage.getItem('sno'));
      if (JSON.parse(localStorage.getItem('sno'))) {
        this.repairCriteria.sno = JSON.parse(localStorage.getItem('sno'));
      }
-    // if (this.loginUser.name) {
-    //   this.repairCriteria.userName = this.loginUser.name;
-    // }
     this.getRepairList()
   }
 

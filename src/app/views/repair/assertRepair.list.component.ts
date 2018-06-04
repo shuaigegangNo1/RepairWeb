@@ -4,11 +4,12 @@ import {MessageService} from '../../common/service/messageService';
 import {ModalDirective} from 'ngx-bootstrap';
 import {CustomPaginationComponent} from '../pagination/pagination.component';
 import {Subject} from 'rxjs/Subject';
-import {Repair, RepairCriteria} from "../../common/entity/Repair";
-import {RepairService} from "../../common/service/repairService";
-import {Evaluate} from "../../common/entity/Evaluate";
-import {EvaluateService} from "../../common/service/evaluateService";
-
+import {Repair, RepairCriteria} from '../../common/entity/Repair';
+import {RepairService} from '../../common/service/repairService';
+import {Evaluate} from '../../common/entity/Evaluate';
+import {EvaluateService} from '../../common/service/evaluateService';
+import { utils, write, WorkBook, readFile } from 'xlsx';
+import { saveAs } from 'file-saver';
 @Component({
   templateUrl: 'assertRepair.list.component.html'
 })
@@ -23,6 +24,22 @@ export class AssertRepairListComponent extends CustomPaginationComponent impleme
   showDisable: boolean;
   loginUser: any;
   showFinishTime: boolean;
+  table = [
+    {
+      姓名: '许士国',
+      性别: '男',
+      年龄: '18',
+      年级: '大一',
+      爱好: '打球'
+    },
+    {
+      姓名: '苏昕',
+      性别: '女',
+      年龄: '16',
+      年级: '六年级',
+      爱好: '弹钢琴'
+    },
+  ];
   @ViewChild('updateModal') public updateModal: ModalDirective;
   @ViewChild('showModal') public showModal: ModalDirective;
   constructor(protected router: Router, protected messageService: MessageService,
@@ -115,4 +132,30 @@ export class AssertRepairListComponent extends CustomPaginationComponent impleme
   JumpToPrint(repair: Repair) {
     this.router.navigate(['/repair/print', repair.id]);
   }
+
+  export() {
+    const ws_name = '用户信息';
+    const wb: WorkBook = { SheetNames: [], Sheets: {} };
+    const ws: any = utils.json_to_sheet(this.table);
+    wb.SheetNames.push(ws_name);
+    wb.Sheets[ws_name] = ws;
+    const wbout = write(wb, { bookType: 'xlsx', bookSST: true, type: 'binary' });
+
+    function s2ab(s) {
+      const buf = new ArrayBuffer(s.length);
+      const view = new Uint8Array(buf);
+      for (let i = 0; i !== s.length; ++i) {
+        view[i] = s.charCodeAt(i) & 0xFF;
+      };
+      return buf;
+    }
+
+    saveAs(new Blob([s2ab(wbout)], { type: 'application/octet-stream' }), 'data.xlsx');
+  }
+  // readXlsFile() {
+  //   // let wb1: WorkBook = { SheetNames: [], Sheets: {} };
+  //  const  wb1 = readFile('../../../assets/file/data.xlsx')
+  //   const worksheet = wb1.Sheets['用户信息'];
+  //   console.log(utils.sheet_to_json(worksheet,{raw: true}));
+  // }
 }
