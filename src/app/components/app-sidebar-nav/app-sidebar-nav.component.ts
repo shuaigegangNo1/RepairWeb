@@ -34,7 +34,10 @@ export class AppSidebarNavComponent {
 
   constructor() {
     this.role = JSON.parse(localStorage.getItem('sno'));
-    if (this.role === 'admin') {
+    if (this.role === 'admin' || this.role === 'padmin' ||
+        this.role === 'iadmin' || this.role === 'oadmin' ||
+        this.role === 'eadmin' || this.role === 'cadmin' ||
+        this.role === 'sadmin') {
       this.navigations = navigation4Admin;
     }else {
       this.navigations = navigation;

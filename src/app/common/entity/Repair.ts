@@ -21,6 +21,7 @@ export class RepairCriteria extends BaseCriteria {
     userName?: string;
     sno?: string;
     repair_status?: number;
+    area = '';
     isFinish = '';
     isEvaluate = '';
 }

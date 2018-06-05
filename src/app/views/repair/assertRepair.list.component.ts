@@ -40,6 +40,7 @@ export class AssertRepairListComponent extends CustomPaginationComponent impleme
       爱好: '弹钢琴'
     },
   ];
+  sno: any;
   @ViewChild('updateModal') public updateModal: ModalDirective;
   @ViewChild('showModal') public showModal: ModalDirective;
   constructor(protected router: Router, protected messageService: MessageService,
@@ -54,8 +55,24 @@ export class AssertRepairListComponent extends CustomPaginationComponent impleme
         this.showFinishTime = false;
       }
     }
+    this.sno = JSON.parse(localStorage.getItem('sno'));
     // this.loginUser = JSON.parse(localStorage.getItem('loginUser'));
     // this.repairCriteria.userName = this.loginUser.name;
+    if (this.sno === 'padmin') {
+      this.repairCriteria.area = '10';
+    } else if (this.sno === 'iadmin') {
+      this.repairCriteria.area = '11'
+      this.repairCriteria.userName = 'iadmin'
+    } else if (this.sno === 'oadmin') {
+      this.repairCriteria.area = '20'
+    } else if (this.sno === 'eadmin') {
+      this.repairCriteria.area = '30'
+    } else if (this.sno === 'cadmin') {
+      this.repairCriteria.area = '40'
+    } else if (this.sno === 'sadmin') {
+      this.repairCriteria.area = '10'
+      this.repairCriteria.userName = 'sadmin'
+    }
     this.getRepairList()
   }
 
