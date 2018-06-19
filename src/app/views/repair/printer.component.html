@@ -53,19 +53,26 @@
             <br>
             <div style="margin-top: 5px;">
                 <label style="width: 8%"></label>
+                <label class="control-label">材料编号:</label>
+                <label style="width: 30%">
+                    <p class="form-control" *ngIf="showCode">{{material.code}}</p>
+                    <input  *ngIf="!showCode" [(ngModel)]="material.code" type="text" class="form-control" id="materialCode" name="materialCode" (change)="getMaterialDetail()">
+                </label>
+                <label style="width: 10%"></label>
                 <label class="control-label">使用材料:</label>
                 <label style="width: 30%">
-                    <input  [(ngModel)]="repair.material" type="text" class="form-control" id="material" name="material">
-                </label>
-                <label style="width: 9%"></label>
-                <label class="control-label">数量:</label>
-                <label style="width: 30%">
-                    <input  [(ngModel)]="repair.material" type="text" class="form-control" id="materialNum" name="materialNum">
+                    <p class="form-control">{{materialName}}</p>
+                    <!--<input  [(ngModel)]="materialName" type="text" class="form-control" id="material" name="material">-->
                 </label>
             </div>
             <br>
             <div style="margin-top: 5px;">
-                <label style="width: 9%"></label>
+                <label style="width: 10.5%"></label>
+                <label class="control-label">数量:</label>
+                <label style="width: 30%">
+                    <input  [(ngModel)]="repair.material" type="text" class="form-control" id="materialNum" name="materialNum">
+                </label>
+                <label style="width: 10%"></label>
                 <label class="control-label">维修时间:</label>
                 <label style="width: 30%">
                     <input  [(ngModel)]="repair.update_time" type="text" class="form-control" id="updateTime" name="updateTime">
