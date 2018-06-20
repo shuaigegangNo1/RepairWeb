@@ -25,6 +25,17 @@ export class RepairRecordDetailComponent {
         if (this.route.snapshot.params['id']) {
             this.repair.id = this.route.snapshot.params['id'];
         }
+        this.initParams();
+    }
+    initParams() {
+        if (+this.status === 0) {
+            this.repairRecord.repair_progress = '维修处理中！';
+        }
+        if (+this.status === 1) {
+            this.repairRecord.repair_progress = '维修已完成！';
+            this.repair.material = '无';
+            // this.repair.result = '维修顺利完成！';
+        }
     }
     createRepairRecord() {
         if (!this.repairRecord.repair_progress) {

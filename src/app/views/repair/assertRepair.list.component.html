@@ -48,10 +48,10 @@
                       <a class="dropdown-item" href="javascript:void(0);"
                          (click)="showRepair(repair)">详情</a>
                     </li>
-                    <!--<li role="menuitem">-->
-                      <!--<a class="dropdown-item" href="javascript:void(0);"-->
-                         <!--(click)="showPics(equipment)">查看附件</a>-->
-                    <!--</li>-->
+                    <li role="menuitem">
+                      <a class="dropdown-item" href="javascript:void(0);"
+                         (click)="showPics(repair)">查看附件</a>
+                    </li>
                     <li role="menuitem" *ngIf="repair.repair_status ===0">
                       <a class="dropdown-item" href="javascript:void(0);"
                          (click)="approve(repair)">审批</a>
@@ -195,6 +195,28 @@
       </div>
       <div class="modal-footer" *ngIf="!showDisable">
         <button type="button" class="btn btn-primary" (click)="submitRepair()">确认</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div bsModal #showPictureModal="bs-modal" class="modal fade" tabindex="0" role="dialog"
+     aria-labelledby="myLargeModalLabel" aria-hidden="false" >
+  <div class="modal-dialog" >
+    <div class="modal-content" style="width:800px;">
+      <div class="modal-header">
+        <h4 class="modal-title pull-left">附件</h4>
+        <button type="button" class="close pull-right" (click)="showPictureModal.hide()" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <carousel>
+          <slide *ngFor="let image of images">
+            <!--<img src="assets/img/user.jpeg" alt="first slide" style="display: block; width: 100%;">-->
+            <img src="{{image.filePath}}/{{image.fileName}}.{{image.fileFormat}}" alt="first slide" style="display: block; width: 100%;">
+          </slide>
+        </carousel>
       </div>
     </div>
   </div>

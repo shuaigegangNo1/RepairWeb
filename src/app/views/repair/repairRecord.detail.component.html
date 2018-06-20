@@ -19,7 +19,7 @@
                             <div class="form-group" style="margin-top: 50px;">
                                 <label class="col-sm-2 control-label">维修状态</label>
                                 <div class="col-sm-8">
-                                    <select [(ngModel)]="status" name="area" class="form-control">
+                                    <select [(ngModel)]="status" name="area" class="form-control" (change)="initParams()">
                                         <option value="0">维修中</option>
                                         <option value="1">已完成</option>
                                     </select>
@@ -29,14 +29,14 @@
                                 <label class="col-sm-2 control-label">使用材料<span style="color:red; font-size: 20px;">*</span></label>
                                 <div class="col-sm-8">
                                     <input type="text" [(ngModel)]="repair.material" class="form-control" id="inputMaterial"
-                                           name="inputMaterial" placeholder="请输入材料">
+                                           name="inputMaterial" placeholder="请输入材料" placeholder="无">
                                 </div>
                             </div>
                             <div class="form-group" style="margin-top: 50px;" *ngIf="status ==1">
                                 <label class="col-sm-2 control-label">维修结果<span style="color:red; font-size: 20px;">*</span></label>
                                 <div class="col-sm-8">
                                     <input type="text" [(ngModel)]="repair.result" class="form-control" id="inputResult"
-                                           name="inputResult" placeholder="请输入维修结果">
+                                           name="inputResult" placeholder="请输入维修结果" placeholder="维修顺利完成！">
                                 </div>
                             </div>
                         </form>

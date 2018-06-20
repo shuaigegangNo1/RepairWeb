@@ -7,10 +7,11 @@ export class Attachment extends BaseModule {
     fileName?: string;
     filePath?: string;
     fileFormat?: string;
-    equipment_id?: number;
+    repair_id?: number;
 }
 
 export class AttachmentCriteria extends BaseCriteria {
     fileName: string;
-    equipment_id: number;
+    repair_id: number;
+    code: string;
 }

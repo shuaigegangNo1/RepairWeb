@@ -44,7 +44,7 @@ export class FileService extends BaseService {
         });
     }
     create(attachment: Attachment) {
-        return this.http.post(this.getServiceUrl() + '/attachment/create?equipmentId=' + attachment.equipment_id , JSON.stringify(attachment),
+        return this.http.post(this.getServiceUrl() + '/attachment/create?repairId=' + attachment.repair_id , JSON.stringify(attachment),
             this.getJsonHeaderWithJWT()).map(res => res.json()).catch(this.handleError)
     }
     getAttachmentList(attachmentCriteria: AttachmentCriteria) {

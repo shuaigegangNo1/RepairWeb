@@ -10,6 +10,8 @@ import {Evaluate} from '../../common/entity/Evaluate';
 import {EvaluateService} from '../../common/service/evaluateService';
 import { utils, write, WorkBook, readFile } from 'xlsx';
 import { saveAs } from 'file-saver';
+import {AttachmentCriteria} from "../../common/entity/Attachment";
+import {FileService} from "../../common/service/fileService";
 @Component({
   templateUrl: 'assertRepair.list.component.html'
 })
@@ -17,6 +19,7 @@ export class AssertRepairListComponent extends CustomPaginationComponent impleme
   repairList: Array<Repair>;
   page  = 0;
   repairCriteria: RepairCriteria = new RepairCriteria();
+  attachmentCriteria: AttachmentCriteria = new AttachmentCriteria();
   f_Repair: Repair = new Repair();
   f_Evaluate: Evaluate = new Evaluate();
   searchStream = new Subject<RepairCriteria>();
@@ -41,11 +44,13 @@ export class AssertRepairListComponent extends CustomPaginationComponent impleme
     },
   ];
   sno: any;
+  images: any[];
   @ViewChild('updateModal') public updateModal: ModalDirective;
   @ViewChild('showModal') public showModal: ModalDirective;
+  @ViewChild('showPictureModal') public showPictureModal: ModalDirective;
   constructor(protected router: Router, protected messageService: MessageService,
               private repairService: RepairService, private evaluateService: EvaluateService,
-              private route: ActivatedRoute) {
+              private route: ActivatedRoute, private fileService: FileService) {
     super(router, messageService);
     if (this.route.snapshot.params['id']) {
       this.repairCriteria.repair_status = this.route.snapshot.params['id'];
@@ -168,6 +173,17 @@ export class AssertRepairListComponent extends CustomPaginationComponent impleme
     }
 
     saveAs(new Blob([s2ab(wbout)], { type: 'application/octet-stream' }), 'data.xlsx');
+  }
+
+  showPics(repair: Repair) {
+    this.attachmentCriteria.repair_id = repair.id;
+    this.fileService.getAttachmentList(this.attachmentCriteria).subscribe(
+        res => {
+          this.images = res.attachmentList.content;
+          this.showPictureModal.show();
+        }
+    )
+
   }
   // readXlsFile() {
   //   // let wb1: WorkBook = { SheetNames: [], Sheets: {} };
