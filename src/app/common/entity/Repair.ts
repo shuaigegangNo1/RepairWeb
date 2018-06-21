@@ -5,6 +5,7 @@ import {BaseCriteria} from './BaseCriteria';
 import {BaseModule} from './BaseModule';
 export class Repair extends BaseModule {
     content?: string;
+    code?: string;
     area?: number;
     address?: string;
     telephone?: string;

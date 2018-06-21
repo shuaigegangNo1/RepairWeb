@@ -1,5 +1,5 @@
 <div class="modal-body" #print_div>
-<h1 style="text-align: center; margin-top: 6%">报修单</h1>
+<h1 style="text-align: center; margin-top: 6%">报修单 {{assertRepair.code}}</h1>
     <form class="form-horizontal">
         <div class="form-group" style="margin-top: 3%">
             <div style="margin-top: 5px;">
@@ -18,7 +18,7 @@
             <br>
             <div style="margin-top: 5px;">
                 <label style="width: 7.5%"></label>
-                <label class="control-label">保修内容:</label>
+                <label class="control-label">报修内容:</label>
                 <label style="width: 76%">
                     <p class="form-control">{{assertRepair.content}}</p>
                 </label>

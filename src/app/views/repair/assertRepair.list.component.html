@@ -19,7 +19,7 @@
             <table class="table table-hover table-striped">
               <thead>
               <tr>
-                <th width="25%">ID</th>
+                <th width="25%">报修单号</th>
                 <th>维修内容</th>
                 <th>维修区域</th>
                 <th>维修地址</th>
@@ -31,7 +31,7 @@
               </thead>
               <tbody>
               <tr *ngFor="let repair of repairList">
-              <td>{{repair?.id}}</td>
+              <td>{{repair?.code}}</td>
               <td>{{repair?.content}}</td>
               <td>{{repair?.area | area}}</td>
               <td>{{repair?.address}}</td>

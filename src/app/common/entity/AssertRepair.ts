@@ -5,6 +5,7 @@ import {BaseModule} from './BaseModule';
 export class AssertRepair extends BaseModule {
     name?: string;
     content?: string;
+    code?: string;
     area?: number;
     address?: string;
     telephone?: string;
