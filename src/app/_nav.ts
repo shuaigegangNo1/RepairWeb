@@ -23,14 +23,14 @@ export const navigation = [
 ];
 
 export const navigation4Admin = [
-  {
-    name: '用户管理',
-    url: '/user',
-    icon: 'icon-speedometer',
-    badge: {
-      variant: 'info',
-    }
-  },
+  // {
+  //   name: '用户管理',
+  //   url: '/user',
+  //   icon: 'icon-speedometer',
+  //   badge: {
+  //     variant: 'info',
+  //   }
+  // },
   {
     title: true,
     name: '报修管控'
