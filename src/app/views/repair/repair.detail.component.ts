@@ -35,6 +35,7 @@ export class RepairDetailComponent {
             return;
         }
         this.repair.repair_status = 0;
+        this.repair.code = new Date().getTime().toString().slice(5,13);
         this.repairService.create(this.sno, this.repair).subscribe(
             res => {
                 this.router.navigate(['/message'], {queryParams: {'message': '报修成功!', 'url': '/repair'}});
