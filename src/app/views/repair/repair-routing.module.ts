@@ -8,6 +8,7 @@ import {RepairRecordListComponent} from "./repairRecord.list.component";
 import {RepairRecordDetailComponent} from "./repairRecord.detail.component";
 import {EvaluateDetailComponent} from "./evaluate.detail.component";
 import {PrintModalComponent} from "./printer.component";
+import {UploadFileComponent} from "./uploadfile.component";
 
 
 const routes: Routes = [
@@ -100,6 +101,13 @@ const routes: Routes = [
     component: PrintModalComponent,
     data: {
       title: 'Print'
+    }
+  },
+  {
+    path: 'upload/:id',
+    component: UploadFileComponent,
+    data: {
+      title: 'Upload'
     }
   },
 ];

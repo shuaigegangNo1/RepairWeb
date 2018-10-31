@@ -81,6 +81,9 @@ export class RepairListComponent extends CustomPaginationComponent implements On
   create() {
     this.router.navigate(['/repair/create']);
   }
+  upload(repair: Repair) {
+    this.router.navigate(['/repair/upload', repair.id]);
+  }
   submitRepair() {
     this.f_Repair1.id = this.f_Repair.id;
     this.repairService.update(this.f_Repair1).subscribe(res => {

@@ -1,0 +1,43 @@
+<h1>
+    {{title}}
+</h1>
+<br>
+<div>
+    <div>
+        <input type="file" ng2FileSelect [uploader]="uploader" />
+    </div>
+
+    <br>
+    <p>文件数量: {{ uploader?.queue?.length }}</p>
+    <table class="table">
+        <thead>
+        <tr>
+            <th width="25%">文件名</th>
+            <th width="30%">状态</th>
+            <th width="30%">操作</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr *ngFor="let item of uploader.queue">
+            <td><strong>{{ item?.file?.name }}</strong></td>
+            <td>
+                <span *ngIf="item.isSuccess">上传成功</span>
+                <span *ngIf="item.isCancel">取消上传</span>
+                <span *ngIf="item.isError">上传失败</span>
+            </td>
+            <td>
+                <button type="button" (click)="upload()" [disabled]="item.isReady || item.isUploading || item.isSuccess">
+                    上传
+                </button>
+                <button type="button" (click)="item.cancel()" [disabled]="!item.isUploading">
+                    取消
+                </button>
+                <button type="button" (click)="item.remove()">
+                    删除
+                </button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>

@@ -43,8 +43,8 @@ export class FileService extends BaseService {
             xhr.send(formData);
         });
     }
-    create(attachment: Attachment) {
-        return this.http.post(this.getServiceUrl() + '/attachment/create?repairId=' + attachment.repair_id , JSON.stringify(attachment),
+    create(repair_id:number, attachment: Attachment) {
+        return this.http.post(this.getServiceUrl() + '/attachment/createAttachment?repairId=' + repair_id , JSON.stringify(attachment),
             this.getJsonHeaderWithJWT()).map(res => res.json()).catch(this.handleError)
     }
     getAttachmentList(attachmentCriteria: AttachmentCriteria) {
