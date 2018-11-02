@@ -46,6 +46,10 @@ export class RepairRecordDetailComponent {
                     this.messageService.pushMessage({title: '字段为空', content: '请输入使用材料', type: 'error'});
                     return;
                 }
+                if (!this.repair.usecount) {
+                    this.messageService.pushMessage({title: '字段为空', content: '请输入耗材数量', type: 'error'});
+                    return;
+                }
                 if (!this.repair.result) {
                     this.messageService.pushMessage({title: '字段为空', content: '请输入维修结果', type: 'error'});
                     return;

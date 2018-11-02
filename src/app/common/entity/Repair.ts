@@ -11,6 +11,7 @@ export class Repair extends BaseModule {
     telephone?: string;
     repair_status?: number;
     material?: string;
+    usecount?:number;
     result?: string;
     rate?: string;
     isEvaluate?: string;
