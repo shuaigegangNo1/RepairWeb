@@ -22,7 +22,9 @@ export class AreaPipe implements PipeTransform {
         } else if (value === 15) {
             return '专业教学楼';
         } else if (value === 16) {
-            return '文体中心'; // 曹云峰
+            return '文体中心';
+        } else if (value === 18) {
+            return '留学生公寓'; // 曹云峰
         } else if (value === 20) {
             return '室外公共设施'; // 徐雪荣
         } else if (value === 30) {
