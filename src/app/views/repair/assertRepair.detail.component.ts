@@ -57,9 +57,11 @@ export class AssertRepairDetailComponent {
             this.messageService.pushMessage({title: 'Error', content: '请选择审批意见', type: 'error'});
             return;
         }
-        if (!this.repairmanId) {
-            this.messageService.pushMessage({title: 'Error', content: '请选择检修人', type: 'error'});
-            return;
+        if(this.status ===2){
+            if (!this.repairmanId) {
+                this.messageService.pushMessage({title: 'Error', content: '请选择检修人', type: 'error'});
+                return;
+            }
         }
         this.updateRepairStatusAndRepairMan();
     }
